@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FoodyMan
+namespace PawMart
 {
-	public partial class FoodyMan : System.Web.UI.MasterPage
+	public partial class PawMart : System.Web.UI.MasterPage
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{

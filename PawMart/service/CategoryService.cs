@@ -1,12 +1,12 @@
-﻿using FoodyMan.Models;
-using FoodyMan.Repository;
+﻿using PawMart.Models;
+using PawMart.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 
-namespace FoodyMan.service
+namespace PawMart.service
 {
 	public class CategoryService
 	{

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FoodyMan.Models
+namespace PawMart.Models
 {
 	public class OrderItem
 	{
@@ -12,7 +12,7 @@ namespace FoodyMan.Models
 
             public int OrderItemID { get; set; }
             public int OrderID { get; set; }
-            public int FoodItemID { get; set; }
+            public int ProductItemID { get; set; }
             public int Quantity { get; set; }
             public decimal Price { get; set; } // Price at the time of order
             public decimal Subtotal { get; set; }

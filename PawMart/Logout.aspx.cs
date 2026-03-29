@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class Logout : System.Web.UI.Page
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FoodyMan.Models
+namespace PawMart.Models
 {
-	public class FoodItem
+	public class Product
 	{
-        public int FoodItemID { get; set; }
+        public int ProductItemID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

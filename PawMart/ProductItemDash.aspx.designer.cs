@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FoodyMan
+namespace PawMart
 {
 
 
-    public partial class FoodItemDash
+    public partial class ProductItemDash
     {
 
         /// <summary>
@@ -204,13 +204,13 @@ namespace FoodyMan
         protected global::System.Web.UI.WebControls.CheckBox chkIsFeatured;
 
         /// <summary>
-        /// btnAddFoodItem control.
+        /// btnAddProductItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddFoodItem;
+        protected global::System.Web.UI.WebControls.Button btnAddProductItem;
 
         /// <summary>
         /// lblEditMessage control.
@@ -222,13 +222,13 @@ namespace FoodyMan
         protected global::System.Web.UI.WebControls.Label lblEditMessage;
 
         /// <summary>
-        /// hdnFoodItemID control.
+        /// hdnProductItemID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnFoodItemID;
+        protected global::System.Web.UI.WebControls.HiddenField hdnProductItemID;
 
         /// <summary>
         /// lblEditName control.
@@ -402,12 +402,12 @@ namespace FoodyMan
         protected global::System.Web.UI.WebControls.CheckBox chkEditIsFeatured;
 
         /// <summary>
-        /// btnUpdateFoodItem control.
+        /// btnUpdateProductItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateFoodItem;
+        protected global::System.Web.UI.WebControls.Button btnUpdateProductItem;
     }
 }

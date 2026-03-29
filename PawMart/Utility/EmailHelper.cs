@@ -5,15 +5,15 @@ using System.Linq;
 using System.Net.Mail;
 using System.Net;
 using System.Web;
-using FoodyMan.Models;
-using FoodyMan.Services;
+using PawMart.Models;
+using PawMart.Services;
 
-namespace FoodyMan.Utility
+namespace PawMart.Utility
 {
     public static class EmailHelper
     {
         private static readonly string fromEmail = "shrlaxman9861@gmail.com"; // Your Gmail
-        private static readonly string fromDisplayName = "Foodyman";
+        private static readonly string fromDisplayName = "PawMart";
         private static readonly string appPassword = "rtkk uovd ukvg rjdz"; // Gmail App Password
 
         public static bool SendWelcomeEmail(string toEmail, string userName)
@@ -22,15 +22,15 @@ namespace FoodyMan.Utility
             {
                 var fromAddress = new MailAddress(fromEmail, fromDisplayName);
                 var toAddress = new MailAddress(toEmail);
-                const string subject = "🎉 Welcome to FoodyMan!";
+                const string subject = "🎉 Welcome to PawMart!";
                 string body = $@"
                     <div style='font-family:Segoe UI, sans-serif; padding:20px;'>
                         <h2>Hi {userName},</h2>
-                        <p>Thank you for registering with <strong>FoodyMan</strong>! We're thrilled to have you on board.</p>
+                        <p>Thank you for registering with <strong>PawMart</strong>! We're thrilled to have you on board.</p>
                         <p>Explore our varieties of food categories and enjoy delicious food items here.</p>
                         <br/>
                         <p>Cheers,</p>
-                        <p><strong>FoodyMan Team</strong></p>
+                        <p><strong>PawMart Team</strong></p>
                     </div>";
 
                 var message = new MailMessage
@@ -69,7 +69,7 @@ namespace FoodyMan.Utility
 
                 var fromAddress = new MailAddress(fromEmail, fromDisplayName);
                 var toAddress = new MailAddress(userEmail);
-                string subject = $"Your Order Confirmation #{order.OrderID} - FoodyMan";
+                string subject = $"Your Order Confirmation #{order.OrderID} - PawMart";
 
                 // Get order items with food names (assuming you have this data)
                 var orderService = new OrderService();
@@ -161,7 +161,7 @@ namespace FoodyMan.Utility
             {
                 emailBody += $@"
                 <tr>
-                    <td>{item.FoodItemName}</td>
+                    <td>{item.ProductName}</td>
                     <td>{item.Quantity}</td>
                     <td>{item.Price:C2}</td>
                     <td>{item.Subtotal:C2}</td>
@@ -180,15 +180,15 @@ namespace FoodyMan.Utility
                         </div>
                         
                         <p>We'll send you another email when your order ships.</p>
-                        <p>Thank you for ordering with FoodyMan!</p>
+                        <p>Thank you for ordering with PawMart!</p>
                         
                         <p style='text-align: center; margin-top: 30px;'>
                             <a href='https://yourdomain.com/User/OrderHistory.aspx' class='btn'>View Order History</a>
                         </p>
                     </div>
                     <div class='footer'>
-                        <p>© " + DateTime.Now.Year + @" FoodyMan. All rights reserved.</p>
-                        <p>If you have any questions, please contact our customer service at support@foodyman.com</p>
+                        <p>© " + DateTime.Now.Year + @" PawMart. All rights reserved.</p>
+                        <p>If you have any questions, please contact our customer service at support@PawMart.com</p>
                     </div>
                 </div>
             </body>

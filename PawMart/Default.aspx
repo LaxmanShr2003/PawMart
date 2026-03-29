@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FoodyMan.Default" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="PawMart.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -562,7 +562,7 @@
             <h2 class="section-title">What Our Customers Say</h2>
             <div class="testimonials-container">
                 <div class="testimonial">
-                    <p class="testimonial-text">"FoodyMan has changed the way I enjoy food. Their service is exceptional, and the food always arrives hot and fresh. I can't recommend them enough!"</p>
+                    <p class="testimonial-text">"PawMart has changed the way I enjoy food. Their service is exceptional, and the food always arrives hot and fresh. I can't recommend them enough!"</p>
                     <div class="testimonial-author">John Smith</div>
                     <div class="testimonial-role">Regular Customer</div>
                 </div>
@@ -576,7 +576,7 @@
             <div class="app-container">
                 <div class="app-info">
                     <h2 class="app-title">Download Our Mobile App</h2>
-                    <p class="app-description">Get the full FoodyMan experience on your mobile device. Order food, track your delivery in real-time, and receive exclusive app-only offers.</p>
+                    <p class="app-description">Get the full PawMart experience on your mobile device. Order food, track your delivery in real-time, and receive exclusive app-only offers.</p>
                     <div class="app-buttons">
                         <a href="#" class="app-button">
                             <i class="fab fa-google-play"></i>
@@ -595,7 +595,7 @@
                     </div>
                 </div>
                 <div class="app-image">
-                    <img src="/Images/app-mockup.png" alt="FoodyMan Mobile App" />
+                    <img src="/Images/app-mockup.png" alt="PawMart Mobile App" />
                 </div>
             </div>
         </div>

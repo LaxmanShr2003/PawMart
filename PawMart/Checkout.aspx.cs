@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using FoodyMan.Models;
-using FoodyMan.service;
-using FoodyMan.Services;
-using FoodyMan.Utility;
+using PawMart.Models;
+using PawMart.service;
+using PawMart.Services;
+using PawMart.Utility;
 
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class Checkout : System.Web.UI.Page
     {

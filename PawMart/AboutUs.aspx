@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="AboutUs.aspx.cs" Inherits="FoodyMan.AboutUs" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="AboutUs.aspx.cs" Inherits="PawMart.AboutUs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* About Us Page Styles */
@@ -349,12 +349,12 @@
 
     <!-- About Section -->
     <div class="about-section">
-        <h2>About FoodyMan</h2>
-        <p>FoodyMan was born out of a simple yet powerful vision: to make delicious, quality food accessible to everyone with just a few clicks. Founded in 2020, we've quickly grown from a small startup to a trusted name in online food ordering across the country.</p>
+        <h2>About PawMart</h2>
+        <p>PawMart was born out of a simple yet powerful vision: to make delicious, quality food accessible to everyone with just a few clicks. Founded in 2020, we've quickly grown from a small startup to a trusted name in online food ordering across the country.</p>
         
         <p>Our platform connects hungry customers with a diverse range of local restaurants, offering a seamless ordering experience and reliable delivery service. We believe that good food brings people together, and we're passionate about being the bridge that makes those connections happen.</p>
         
-        <p>What sets us apart is our commitment to quality, convenience, and customer satisfaction. We carefully select our restaurant partners, ensure timely deliveries, and constantly improve our platform based on user feedback. Whether you're craving comfort food, exploring international cuisines, or looking for healthy options, FoodyMan has something for everyone.</p>
+        <p>What sets us apart is our commitment to quality, convenience, and customer satisfaction. We carefully select our restaurant partners, ensure timely deliveries, and constantly improve our platform based on user feedback. Whether you're craving comfort food, exploring international cuisines, or looking for healthy options, PawMart has something for everyone.</p>
 
         <!-- Features -->
         <div class="about-features">
@@ -388,7 +388,7 @@
     <div class="team-section">
         <div class="team-header">
             <h2>Meet Our Team</h2>
-            <p>The passionate people behind FoodyMan</p>
+            <p>The passionate people behind PawMart</p>
         </div>
         
         <div class="team-grid">
@@ -461,7 +461,7 @@
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <i class="fas fa-quote-left quote"></i>
-                <p class="testimonial-text">"FoodyMan has completely changed how I order food. The app is so easy to use, and my orders always arrive on time. I love the variety of restaurants available!"</p>
+                <p class="testimonial-text">"PawMart has completely changed how I order food. The app is so easy to use, and my orders always arrive on time. I love the variety of restaurants available!"</p>
                 <div class="testimonial-author">
                     <div class="author-image">
                         <img src="/api/placeholder/150/150" alt="David Miller">
@@ -482,7 +482,7 @@
             
             <div class="testimonial-card">
                 <i class="fas fa-quote-left quote"></i>
-                <p class="testimonial-text">"As a busy professional, I rely on FoodyMan for both lunch at the office and dinner at home. Their customer service is exceptional - they quickly resolved an issue I had with an order!"</p>
+                <p class="testimonial-text">"As a busy professional, I rely on PawMart for both lunch at the office and dinner at home. Their customer service is exceptional - they quickly resolved an issue I had with an order!"</p>
                 <div class="testimonial-author">
                     <div class="author-image">
                         <img src="/api/placeholder/150/150" alt="Jennifer Lee">
@@ -503,7 +503,7 @@
             
             <div class="testimonial-card">
                 <i class="fas fa-quote-left quote"></i>
-                <p class="testimonial-text">"I appreciate the wide selection of healthy food options on FoodyMan. As someone with dietary restrictions, it's been a game-changer to easily find restaurants that cater to my needs."</p>
+                <p class="testimonial-text">"I appreciate the wide selection of healthy food options on PawMart. As someone with dietary restrictions, it's been a game-changer to easily find restaurants that cater to my needs."</p>
                 <div class="testimonial-author">
                     <div class="author-image">
                         <img src="/api/placeholder/150/150" alt="Robert Taylor">

@@ -1,5 +1,5 @@
-﻿using FoodyMan.Models;
-using FoodyMan.Utility;
+﻿using PawMart.Models;
+using PawMart.Utility;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace FoodyMan.Repository
+namespace PawMart.Repository
 {
     public class UserRepository
     {

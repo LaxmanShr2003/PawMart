@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="Admindashboard.aspx.cs" Inherits="FoodyMan.Admindashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="Admindashboard.aspx.cs" Inherits="PawMart.Admindashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <style>
         /* Main Layout */
@@ -260,7 +260,7 @@
         <!-- Sidebar -->
         <nav id="sidebar" class="sidebar">
             <div class="sidebar-header">
-                <h3>FoodyMan Admin</h3>
+                <h3>PawMart Admin</h3>
             </div>
 
             <ul class="sidebar-menu">

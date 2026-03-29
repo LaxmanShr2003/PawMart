@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FoodyMan
+namespace PawMart
 {
 	public partial class Admindashboard : System.Web.UI.Page
 	{

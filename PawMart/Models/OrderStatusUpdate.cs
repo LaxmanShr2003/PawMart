@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FoodyMan.Models
+namespace PawMart.Models
 {
     public class OrderStatusUpdate
     {

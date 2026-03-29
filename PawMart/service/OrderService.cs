@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using FoodyMan.Models;
-using FoodyMan.Repositories;
-using FoodyMan.Repository;
-using FoodyMan.Services;
+using PawMart.Models;
+using PawMart.Repositories;
+using PawMart.Repository;
+using PawMart.Services;
 
-namespace FoodyMan.Services
+namespace PawMart.Services
 {
     public class OrderService
     {

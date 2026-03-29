@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using FoodyMan.Models;
-using FoodyMan.Repository;
+using PawMart.Models;
+using PawMart.Repository;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class OrderHistory : System.Web.UI.Page
     {

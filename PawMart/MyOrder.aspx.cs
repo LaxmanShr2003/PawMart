@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using FoodyMan.Services;
-using FoodyMan.Models;
+using PawMart.Services;
+using PawMart.Models;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class MyOrders : System.Web.UI.Page
     {

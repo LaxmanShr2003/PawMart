@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using FoodyMan.Models;
-using FoodyMan.service;
+using PawMart.Models;
+using PawMart.service;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class AddUser : System.Web.UI.Page
     {

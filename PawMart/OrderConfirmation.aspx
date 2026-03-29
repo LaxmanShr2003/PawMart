@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="OrderConfirmation.aspx.cs" Inherits="FoodyMan.OrderConfirmation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="OrderConfirmation.aspx.cs" Inherits="PawMart.OrderConfirmation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
 /* Order Confirmation Styles - Enhanced Version */

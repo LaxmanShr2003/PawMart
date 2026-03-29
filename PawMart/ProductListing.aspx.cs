@@ -1,7 +1,7 @@
-﻿using FoodyMan.Models;
-using FoodyMan.Repositories;
-using FoodyMan.service;
-using FoodyMan.Services;
+﻿using PawMart.Models;
+using PawMart.Repositories;
+using PawMart.service;
+using PawMart.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +9,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class FoodListing : System.Web.UI.Page
     {
         // Services
-        private readonly FoodItemService _foodItemService;
+        private readonly ProductService _productService;
         private readonly CategoryService _categoryService;
         private readonly CartService _cartService;
 
@@ -23,7 +23,7 @@ namespace FoodyMan
 
         public FoodListing()
         {
-            _foodItemService = new FoodItemService();
+            _productService = new ProductService();
             _categoryService = new CategoryService();
             _cartService = new CartService();
         }
@@ -75,7 +75,7 @@ namespace FoodyMan
                 int currentPage = Convert.ToInt32(ViewState["CurrentPage"]);
 
                 // Get all food items
-                List<FoodItem> allItems = _foodItemService.GetAllFoodItems();
+                List<Product> allItems = _productService.GetAllFoodItems();
 
                 // Filter by category if needed
                 if (categoryId > 0)
@@ -109,8 +109,8 @@ namespace FoodyMan
                 }
 
                 // Separate featured items
-                List<FoodItem> featuredItems = allItems.Where(item => item.IsFeatured).ToList();
-                List<FoodItem> regularItems = allItems.Where(item => !item.IsFeatured).ToList();
+                List<Product> featuredItems = allItems.Where(item => item.IsFeatured).ToList();
+                List<Product> regularItems = allItems.Where(item => !item.IsFeatured).ToList();
 
                 // Determine if we should show the featured section
                 pnlFeatured.Visible = featuredItems.Count > 0;
@@ -138,7 +138,7 @@ namespace FoodyMan
 
                 // Paginate the regular items data
                 int startIndex = (currentPage - 1) * PageSize;
-                List<FoodItem> pagedItems;
+                List<Product> pagedItems;
 
                 if (regularItems.Count > 0)
                 {
@@ -149,7 +149,7 @@ namespace FoodyMan
                 }
                 else
                 {
-                    pagedItems = new List<FoodItem>();
+                    pagedItems = new List<Product>();
                 }
 
                 // Bind data to repeaters
@@ -332,22 +332,22 @@ namespace FoodyMan
 
         protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            int foodItemId = Convert.ToInt32(e.CommandArgument);
+            int productId = Convert.ToInt32(e.CommandArgument);
 
             switch (e.CommandName)
             {
                 case "ViewDetails":
                     // Redirect to product details page
-                    Response.Redirect($"FoodDetails.aspx?id={foodItemId}");
+                    Response.Redirect($"ProductDetails.aspx?id={productId}");
                     break;
                 case "AddToCart":
                     // Add item to cart (implement shopping cart functionality)
-                    AddToCart(foodItemId);
+                    AddToCart(productId);
                     break;
             }
         }
 
-        private void AddToCart(int foodItemId)
+        private void AddToCart(int productItemId)
         {
             try
             {
@@ -363,7 +363,7 @@ namespace FoodyMan
 
                 Cart cart = _cartService.EnsureCartExists(currentUser.UserID); // Changed from 'GetCurrentUserId()' to '1' for testing
                 // Get the food item
-                FoodItem item = _foodItemService.GetFoodItemById(foodItemId);
+                Product item = _productService.GetProductById(productItemId);
 
                 if (item == null || !item.IsAvailable)
                 {
@@ -380,7 +380,7 @@ namespace FoodyMan
 
 
                 // Check if item already exists in cart
-                CartItem existingItem = cartitem.FirstOrDefault(i => i.FoodItemID == foodItemId);
+                CartItem existingItem = cartitem.FirstOrDefault(i => i.ProductItemID == productItemId);
 
                 if (existingItem != null)
                 {
@@ -392,7 +392,7 @@ namespace FoodyMan
                     // Add new item to cart
                  
 
-                    _cartService.AddToCart(currentUser.UserID,foodItemId);
+                    _cartService.AddToCart(currentUser.UserID, productItemId);
                 }
 
                 // Save cart to session

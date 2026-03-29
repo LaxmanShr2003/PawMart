@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="FoodyMan.Register" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="PawMart.Register" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
      <style>
@@ -124,7 +124,7 @@
      <div class="register-container">
         <div class="register-header">
             <h2>Create an Account</h2>
-            <p>Join FoodyMan to order delicious food</p>
+            <p>Join PawMart to order delicious food</p>
         </div>
 
         <div class="form-row">

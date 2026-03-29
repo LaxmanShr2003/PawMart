@@ -1,5 +1,5 @@
-﻿using FoodyMan.Models;
-using FoodyMan.Utility;
+﻿using PawMart.Models;
+using PawMart.Utility;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -9,34 +9,34 @@ using System.Linq;
 using System.Web;
 
 
-namespace FoodyMan.Repository
+namespace PawMart.Repository
     {
-        public class FoodItemRepository
+        public class ProductRepository
         {
             private readonly string connectionString;
 
-            public FoodItemRepository()
+            public ProductRepository()
             {
                 connectionString = ConfigurationManager.ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
             }
 
             // Get all food items
-            public List<FoodItem> GetAllFoodItems()
+            public List<Product> GetAllProducts()
             {
-                List<FoodItem> foodItems = new List<FoodItem>();
+                List<Product> Products = new List<Product>();
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        SqlCommand command = new SqlCommand("SELECT * FROM FoodItem ORDER BY FoodItemID DESC", connection);
+                        SqlCommand command = new SqlCommand("SELECT * FROM Product ORDER BY ProductItemID DESC", connection);
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                FoodItem foodItem = new FoodItem
+                                Product Product = new Product
                                 {
-                                    FoodItemID = Convert.ToInt32(reader["FoodItemID"]),
+                                    ProductItemID = Convert.ToInt32(reader["ProductItemID"]),
                                     Name = reader["Name"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     Price = Convert.ToDecimal(reader["Price"]),
@@ -48,7 +48,7 @@ namespace FoodyMan.Repository
                                     CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
                                     UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"])
                                 };
-                                foodItems.Add(foodItem);
+                                Products.Add(Product);
                             }
                         }
                     }
@@ -57,31 +57,31 @@ namespace FoodyMan.Repository
                 {
                     Console.WriteLine("Error retrieving all food items: " + ex.Message);
                 }
-                return foodItems;
+                return Products;
             }
 
             // Add a new food item
-            public bool AddFoodItem(FoodItem foodItem)
+            public bool AddProduct(Product Product)
             {
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         SqlCommand command = new SqlCommand(
-                            "INSERT INTO FoodItem (FoodItemID, Name, Description, Price, DiscountPrice, ImageURL, CategoryID," +
+                            "INSERT INTO Product (ProductItemID, Name, Description, Price, DiscountPrice, ImageURL, CategoryID," +
                             " IsAvailable, IsFeatured, CreatedAt, UpdatedAt) " +
-                            "VALUES (@FoodItemID, @Name, @Description, @Price, @DiscountPrice, @ImageURL, @CategoryID," +
+                            "VALUES (@ProductItemID, @Name, @Description, @Price, @DiscountPrice, @ImageURL, @CategoryID," +
                             " @IsAvailable, @IsFeatured, @CreatedAt, @UpdatedAt)", connection);
 
-                        command.Parameters.AddWithValue("@FoodItemID", IdGenerator.GenerateFoodItemId()); 
-                        command.Parameters.AddWithValue("@Name", foodItem.Name);
-                        command.Parameters.AddWithValue("@Description", foodItem.Description);
-                        command.Parameters.AddWithValue("@Price", foodItem.Price);
-                        command.Parameters.AddWithValue("@DiscountPrice", foodItem.DiscountPrice);
-                        command.Parameters.AddWithValue("@ImageURL", foodItem.ImageURL);
-                        command.Parameters.AddWithValue("@CategoryID", foodItem.CategoryID);
-                        command.Parameters.AddWithValue("@IsAvailable", foodItem.IsAvailable);
-                        command.Parameters.AddWithValue("@IsFeatured", foodItem.IsFeatured);
+                        command.Parameters.AddWithValue("@ProductItemID", IdGenerator.GenerateProductItemId()); 
+                        command.Parameters.AddWithValue("@Name", Product.Name);
+                        command.Parameters.AddWithValue("@Description", Product.Description);
+                        command.Parameters.AddWithValue("@Price", Product.Price);
+                        command.Parameters.AddWithValue("@DiscountPrice", Product.DiscountPrice);
+                        command.Parameters.AddWithValue("@ImageURL", Product.ImageURL);
+                        command.Parameters.AddWithValue("@CategoryID", Product.CategoryID);
+                        command.Parameters.AddWithValue("@IsAvailable", Product.IsAvailable);
+                        command.Parameters.AddWithValue("@IsFeatured", Product.IsFeatured);
                         command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
                         command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
 
@@ -92,30 +92,30 @@ namespace FoodyMan.Repository
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error adding food item: " + ex.Message);
+                    Console.WriteLine("Error adding product: " + ex.Message);
                     throw;
                 }
             }
 
             // Get a food item by ID
-            public FoodItem GetFoodItemById(int foodItemId)
+            public Product GetProductById(int ProductId)
             {
-                FoodItem foodItem = null;
+                Product Product = null;
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        SqlCommand command = new SqlCommand("SELECT * FROM FoodItem WHERE FoodItemID = @FoodItemID", connection);
-                        command.Parameters.AddWithValue("@FoodItemID", foodItemId);
+                        SqlCommand command = new SqlCommand("SELECT * FROM Product WHERE ProductItemID = @ProductItemID", connection);
+                        command.Parameters.AddWithValue("@ProductItemID", ProductId);
                         connection.Open();
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                foodItem = new FoodItem
+                                Product = new Product
                                 {
-                                    FoodItemID = Convert.ToInt32(reader["FoodItemID"]),
+                                    ProductItemID = Convert.ToInt32(reader["ProductID"]),
                                     Name = reader["Name"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     Price = Convert.ToDecimal(reader["Price"]),
@@ -133,34 +133,34 @@ namespace FoodyMan.Repository
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error retrieving food item with ID {foodItemId}: " + ex.Message);
+                    Console.WriteLine($"Error retrieving product item with ID {ProductId}: " + ex.Message);
                 }
-                return foodItem;
+                return Product;
             }
 
             // Update a food item
-            public bool UpdateFoodItem(FoodItem foodItem)
+            public bool UpdateProduct(Product Product)
             {
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         SqlCommand command = new SqlCommand(
-                            "UPDATE FoodItem SET Name = @Name, Description = @Description, Price = @Price," +
+                            "UPDATE Product SET Name = @Name, Description = @Description, Price = @Price," +
                             " DiscountPrice = @DiscountPrice, " +
                             "ImageURL = @ImageURL, CategoryID = @CategoryID, IsAvailable = @IsAvailable, IsFeatured = @IsFeatured, UpdatedAt = @UpdatedAt " +
-                            "WHERE FoodItemID = @FoodItemID", connection);
+                            "WHERE ProductItemID = @ProductItemID", connection);
 
-                        command.Parameters.AddWithValue("@Name", foodItem.Name);
-                        command.Parameters.AddWithValue("@Description", foodItem.Description);
-                        command.Parameters.AddWithValue("@Price", foodItem.Price);
-                        command.Parameters.AddWithValue("@DiscountPrice", foodItem.DiscountPrice);
-                        command.Parameters.AddWithValue("@ImageURL", foodItem.ImageURL);
-                        command.Parameters.AddWithValue("@CategoryID", foodItem.CategoryID);
-                        command.Parameters.AddWithValue("@IsAvailable", foodItem.IsAvailable);
-                        command.Parameters.AddWithValue("@IsFeatured", foodItem.IsFeatured);
+                        command.Parameters.AddWithValue("@Name", Product.Name);
+                        command.Parameters.AddWithValue("@Description", Product.Description);
+                        command.Parameters.AddWithValue("@Price", Product.Price);
+                        command.Parameters.AddWithValue("@DiscountPrice", Product.DiscountPrice);
+                        command.Parameters.AddWithValue("@ImageURL", Product.ImageURL);
+                        command.Parameters.AddWithValue("@CategoryID", Product.CategoryID);
+                        command.Parameters.AddWithValue("@IsAvailable", Product.IsAvailable);
+                        command.Parameters.AddWithValue("@IsFeatured", Product.IsFeatured);
                         command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
-                        command.Parameters.AddWithValue("@FoodItemID", foodItem.FoodItemID);
+                        command.Parameters.AddWithValue("@ProductID", Product.ProductItemID);
 
                         connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
@@ -169,20 +169,20 @@ namespace FoodyMan.Repository
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error updating food item: " + ex.Message);
+                    Console.WriteLine("Error updating product item: " + ex.Message);
                     throw;
                 }
             }
 
             // Delete a food item by ID
-            public bool DeleteFoodItem(int foodItemId)
+            public bool DeleteProduct(int ProductItemID)
             {
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        SqlCommand command = new SqlCommand("DELETE FROM FoodItem WHERE FoodItemID = @FoodItemID", connection);
-                        command.Parameters.AddWithValue("@FoodItemID", foodItemId);
+                        SqlCommand command = new SqlCommand("DELETE FROM Product WHERE ProductItemID = @ProductItemID", connection);
+                        command.Parameters.AddWithValue("@ProductItemID", ProductItemID);
                         connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -190,20 +190,20 @@ namespace FoodyMan.Repository
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error deleting food item: " + ex.Message);
+                    Console.WriteLine("Error deleting product item: " + ex.Message);
                     throw;
                 }
             }
 
             // Check if a food item exists by name
-            public bool IsFoodItemExistsByName(string name)
+            public bool IsProductExistsByName(string name)
             {
                 bool flag = false;
                 try
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        SqlCommand command = new SqlCommand("SELECT * FROM FoodItem WHERE Name = @Name", connection);
+                        SqlCommand command = new SqlCommand("SELECT * FROM Product WHERE Name = @Name", connection);
                         command.Parameters.AddWithValue("@Name", name);
                         connection.Open();
 
@@ -218,7 +218,7 @@ namespace FoodyMan.Repository
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error checking if food item exists with name {name}: " + ex.Message);
+                    Console.WriteLine($"Error checking if product item exists with name {name}: " + ex.Message);
                 }
                 return flag;
             }

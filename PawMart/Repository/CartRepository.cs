@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
-using FoodyMan.Models;
-using FoodyMan.Utility;
+using PawMart.Models;
+using PawMart.Utility;
 using MySql.Data.MySqlClient;
 
-namespace FoodyMan.Repositories
+namespace PawMart.Repositories
 {
     public class CartRepository
     {
@@ -45,7 +45,7 @@ namespace FoodyMan.Repositories
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@CartID", IdGenerator.GenerateFoodItemId());
+                    cmd.Parameters.AddWithValue("@CartID", IdGenerator.GenerateCartItemID());
                     cmd.Parameters.AddWithValue("@UserID", userID);
                     cmd.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
                     cmd.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
@@ -103,12 +103,12 @@ namespace FoodyMan.Repositories
                 // Check if item already exists in cart
                 string checkQuery = @"
                     SELECT Quantity FROM CartItem
-                    WHERE CartID = @CartID AND FoodItemID = @FoodItemID";
+                    WHERE CartID = @CartID AND ProductItemID = @ProductItemID";
 
                 using (SqlCommand checkCmd = new SqlCommand(checkQuery, connection))
                 {
                     checkCmd.Parameters.AddWithValue("@CartID", cartItem.CartID);
-                    checkCmd.Parameters.AddWithValue("@FoodItemID", cartItem.FoodItemID);
+                    checkCmd.Parameters.AddWithValue("@ProductItemID", cartItem.ProductItemID);
 
                     var existingQuantity = checkCmd.ExecuteScalar();
 
@@ -118,12 +118,12 @@ namespace FoodyMan.Repositories
                         string updateQuery = @"
                             UPDATE CartItem
                             SET Quantity = Quantity + @Quantity 
-                            WHERE CartID = @CartID AND FoodItemID = @FoodItemID";
+                            WHERE CartID = @CartID AND ProductItemID = @ProductItemID";
 
                         using (SqlCommand updateCmd = new SqlCommand(updateQuery, connection))
                         {
                             updateCmd.Parameters.AddWithValue("@CartID", cartItem.CartID);
-                            updateCmd.Parameters.AddWithValue("@FoodItemID", cartItem.FoodItemID);
+                            updateCmd.Parameters.AddWithValue("@ProductItemID", cartItem.ProductItemID);
                             updateCmd.Parameters.AddWithValue("@Quantity", cartItem.Quantity);
                             updateCmd.ExecuteNonQuery();
                         }
@@ -133,14 +133,14 @@ namespace FoodyMan.Repositories
                     {
                         // Insert new cart item
                         string insertQuery = @"
-                            INSERT INTO CartItem (CartItemID,CartID, FoodItemID, Quantity, AddedAt) 
-                            VALUES (@CartItemID,@CartID, @FoodItemID, @Quantity, @AddedAt)";
+                            INSERT INTO CartItem (CartItemID,CartID, ProductItemID, Quantity, AddedAt) 
+                            VALUES (@CartItemID,@CartID, @ProductItemID, @Quantity, @AddedAt)";
 
                         using (SqlCommand insertCmd = new SqlCommand(insertQuery, connection))
                         {
                             insertCmd.Parameters.AddWithValue("@CartItemID", IdGenerator.GenerateCartItemID());
                             insertCmd.Parameters.AddWithValue("@CartID", cartItem.CartID);
-                            insertCmd.Parameters.AddWithValue("@FoodItemID", cartItem.FoodItemID);
+                            insertCmd.Parameters.AddWithValue("@ProductItemID", cartItem.ProductItemID);
                             insertCmd.Parameters.AddWithValue("@Quantity", cartItem.Quantity);
                             insertCmd.Parameters.AddWithValue("@AddedAt", DateTime.Now);
                             insertCmd.ExecuteNonQuery();
@@ -186,7 +186,7 @@ namespace FoodyMan.Repositories
                             {
                                 CartItemID = reader.GetInt32(reader.GetOrdinal("CartItemID")),
                                 CartID = reader.GetInt32(reader.GetOrdinal("CartID")),
-                                FoodItemID = reader.GetInt32(reader.GetOrdinal("FoodItemID")),
+                                ProductItemID = reader.GetInt32(reader.GetOrdinal("ProductItemID")),
                                 Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
                                 AddedAt = reader.GetDateTime(reader.GetOrdinal("AddedAt"))
                             });
@@ -220,7 +220,7 @@ namespace FoodyMan.Repositories
                             {
                                 CartItemID = reader.GetInt32(reader.GetOrdinal("CartItemID")),
                                 CartID = reader.GetInt32(reader.GetOrdinal("CartID")),
-                                FoodItemID = reader.GetInt32(reader.GetOrdinal("FoodItemID")),
+                                ProductItemID = reader.GetInt32(reader.GetOrdinal("ProductItemID")),
                                 Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
                                 AddedAt = reader.GetDateTime(reader.GetOrdinal("AddedAt"))
                             });

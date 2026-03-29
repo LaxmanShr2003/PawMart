@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FoodyMan.Utility
+namespace PawMart.Utility
 {
     public class IdGenerator
     {
@@ -29,7 +29,7 @@ namespace FoodyMan.Utility
             return code;
         }
 
-        public static int GenerateFoodItemId()
+        public static int GenerateProductItemId()
         {
             // Get the current time in ticks (a long number)
             long ticks = DateTime.Now.Ticks;
@@ -81,6 +81,28 @@ namespace FoodyMan.Utility
             int code = (int)(ticks % 70000);
 
             return code;
+        }
+
+        public static int GeneratePaymentID()
+        {
+            // Get the current time in ticks (a long number)
+            long ticks = DateTime.Now.Ticks;
+
+            // Convert ticks to a 4-digit code
+            int code = (int)(ticks % 80000);
+
+            return code; 
+        }
+
+        public static int GenerateTransactionID()
+        {
+            // Get the current time in ticks (a long number)
+            long ticks = DateTime.Now.Ticks;
+
+            // Convert ticks to a 4-digit code
+            int code = (int)(ticks % 90000);
+
+            return code; 
         }
     }
 }

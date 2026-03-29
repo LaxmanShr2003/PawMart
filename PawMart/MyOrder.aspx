@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="MyOrder.aspx.cs" Inherits="FoodyMan.MyOrders" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="MyOrder.aspx.cs" Inherits="PawMart.MyOrders" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* Simplified Card Styling */

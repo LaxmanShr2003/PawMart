@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using FoodyMan.Models;
-using FoodyMan.Repository;
-using FoodyMan.service;
-using FoodyMan.Services;
+using PawMart.Models;
+using PawMart.Repository;
+using PawMart.service;
+using PawMart.Services;
 using Org.BouncyCastle.Bcpg;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class AllOrders : System.Web.UI.Page
     {

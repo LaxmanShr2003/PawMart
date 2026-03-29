@@ -2,22 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FoodyMan.Models;
-using FoodyMan.Repositories;
-using FoodyMan.service;
-using FoodyMan.Utility;
+using PawMart.Models;
+using PawMart.Repositories;
+using PawMart.service;
+using PawMart.Utility;
 
-namespace FoodyMan.Services
+namespace PawMart.Services
 {
     public class CartService
     {
         private readonly CartRepository _cartRepository;
-        private readonly FoodItemService _foodItemService;
+        private readonly ProductService _productService;
 
         public CartService()
         {
             _cartRepository = new CartRepository();
-            _foodItemService = new FoodItemService();
+            _productService = new ProductService();
         }
 
         public Cart EnsureCartExists(int userID)
@@ -25,18 +25,18 @@ namespace FoodyMan.Services
             return _cartRepository.CreateCart(userID);
         }
 
-        public void AddToCart(int userID, int FoodItemID, int quantity = 1)
+        public void AddToCart(int userID, int ProductItemID, int quantity = 1)
         {
             // Get or create cart for user
             Cart cart = EnsureCartExists(userID);
-            FoodItem foodItem = _foodItemService.GetFoodItemById(FoodItemID);
+            Product productItem = _productService.GetProductById(ProductItemID);
 
             // Create cart item
             CartItem cartItem = new CartItem
             {
 
                 CartID = cart.CartID,
-                FoodItemID = foodItem.FoodItemID,
+                ProductItemID = productItem.ProductItemID,
                 Quantity = quantity,
                 AddedAt = DateTime.Now
             };
@@ -61,14 +61,14 @@ namespace FoodyMan.Services
 
             foreach (var item in cartItems)
             {
-                var foodItem = _foodItemService.GetFoodItemById(item.FoodItemID);
+                var foodItem = _productService.GetProductById(item.ProductItemID);
 
                 if (foodItem != null)
                 {
                     cartItemsWithDetails.Add(new CartItemViewModel
                     {
                         CartItemID = item.CartItemID,
-                        FoodItemID = item.FoodItemID,
+                        ProductID = item.ProductItemID,
                         Name = foodItem.Name,
                         Price = foodItem.DiscountPrice < foodItem.Price ? foodItem.DiscountPrice : foodItem.Price,
                         Quantity = item.Quantity,

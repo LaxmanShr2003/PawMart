@@ -7,23 +7,23 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using FoodyMan.Models;
-using FoodyMan.service;
-using FoodyMan.Services;
-//using FoodyMan.Models;
+using PawMart.Models;
+using PawMart.service;
+using PawMart.Services;
+//using PawMart.Models;
 
-namespace FoodyMan
+namespace PawMart
 {
   public partial class Default : System.Web.UI.Page
     {
-        private FoodItemService _foodItemService;
+        private ProductService _productService;
         private CartService _cartService;
 
 
         protected void Page_Init(object sender, EventArgs e)
         {
             // Initialize the UserService
-            _foodItemService = new FoodItemService();
+            _productService = new ProductService();
             _cartService = new CartService();
         }
 
@@ -94,9 +94,9 @@ namespace FoodyMan
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"
-                SELECT TOP 8 p.FoodItemID AS ProductID, p.Name, p.Description, p.Price, 
+                SELECT TOP 8 p.ProductItemID AS ProductID, p.Name, p.Description, p.Price, 
                        p.ImageURL AS ImageUrl, c.CategoryID, c.Name as CategoryName
-                FROM FoodItem p
+                FROM Product p
                 INNER JOIN Category c ON p.CategoryID = c.CategoryID
                 WHERE p.IsAvailable = 1 AND p.IsFeatured = 1
                 ORDER BY NEWID()";
@@ -133,7 +133,7 @@ namespace FoodyMan
                 return;
             }
             // Redirect to the menu page
-            Response.Redirect("~/FoodItemListing.aspx");
+            Response.Redirect("~/ProductListing.aspx");
         }
 
         protected void rptFeaturedProducts_ItemCommand(object source, RepeaterCommandEventArgs e)

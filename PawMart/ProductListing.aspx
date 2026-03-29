@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="FoodListing.aspx.cs" Inherits="FoodyMan.FoodListing" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="ProductListing.aspx.cs" Inherits="PawMart.ProductListing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
       <style>
         :root {

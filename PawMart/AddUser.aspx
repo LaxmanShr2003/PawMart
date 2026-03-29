@@ -1,4 +1,4 @@
-﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="FoodyMan.AddUser" %>
+﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="AddUser.aspx.cs" Inherits="PawMart.AddUser" %>
 
     <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <style>

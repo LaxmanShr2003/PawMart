@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="FoodyMan.master.cs" Inherits="FoodyMan.FoodyMan" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PawMart.Master.cs" Inherits="PawMart.PawMart" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -442,7 +442,7 @@
             <div class="container">
                 <div class="nav-content">
                     <a href="#" class="logo">
-                        <i class="fas fa-utensils"></i>FoodyMan
+                        <i class="fas fa-utensils"></i>PawMart
                     </a>
                     <div class="menu-container">
                         <ul class="menu">
@@ -520,7 +520,7 @@
                 <div class="footer-content">
                     <div class="footer-section">
                         <h3>About Us</h3>
-                        <p>FoodyMan is your go-to platform for ordering delicious meals online. We deliver quality food right to your doorstep with quick service and amazing taste.</p>
+                        <p>PawMart is your go-to platform for ordering delicious meals online. We deliver quality food right to your doorstep with quick service and amazing taste.</p>
                     </div>
                     <div class="footer-section">
                         <h3>Quick Links</h3>
@@ -532,7 +532,7 @@
                     </div>
                     <div class="footer-section">
                         <h3>Contact Us</h3>
-                        <p><i class="fas fa-envelope"></i> support@foodyman.com</p>
+                        <p><i class="fas fa-envelope"></i> support@PawMart.com</p>
                         <p><i class="fas fa-phone"></i> +1 234 567 890</p>
                         <p><i class="fas fa-map-marker-alt"></i> 123 Food Street, Kitchen City</p>
                     </div>
@@ -548,7 +548,7 @@
                     </div>
                 </div>
                 <div class="copyright">
-                    <p>&copy; <%= DateTime.Now.Year %> FoodyMan. All Rights Reserved.</p>
+                    <p>&copy; <%= DateTime.Now.Year %> PawMart. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

@@ -153,10 +153,10 @@
     <Content Include="Checkout.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="FoodCart.aspx" />
-    <Content Include="FoodDetails.aspx" />
-    <Content Include="FoodItemDash.aspx" />
-    <Content Include="FoodListing.aspx" />
+    <Content Include="ProductCart.aspx" />
+    <Content Include="ProductDetails.aspx" />
+    <Content Include="ProductItemDash.aspx" />
+    <Content Include="ProductListing.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="Images\dash.jpeg" />
@@ -248,40 +248,40 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FoodCart.aspx.cs">
-      <DependentUpon>FoodCart.aspx</DependentUpon>
+    <Compile Include="ProductCart.aspx.cs">
+      <DependentUpon>ProductCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FoodCart.aspx.designer.cs">
-      <DependentUpon>FoodCart.aspx</DependentUpon>
+    <Compile Include="ProductCart.aspx.designer.cs">
+      <DependentUpon>ProductCart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FoodDetails.aspx.cs">
-      <DependentUpon>FoodDetails.aspx</DependentUpon>
+    <Compile Include="ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FoodDetails.aspx.designer.cs">
-      <DependentUpon>FoodDetails.aspx</DependentUpon>
+    <Compile Include="ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FoodItemDash.aspx.cs">
-      <DependentUpon>FoodItemDash.aspx</DependentUpon>
+    <Compile Include="ProductItemDash.aspx.cs">
+      <DependentUpon>ProductItemDash.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FoodItemDash.aspx.designer.cs">
-      <DependentUpon>FoodItemDash.aspx</DependentUpon>
+    <Compile Include="ProductItemDash.aspx.designer.cs">
+      <DependentUpon>ProductItemDash.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FoodListing.aspx.cs">
-      <DependentUpon>FoodListing.aspx</DependentUpon>
+    <Compile Include="ProductListing.aspx.cs">
+      <DependentUpon>ProductListing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FoodListing.aspx.designer.cs">
-      <DependentUpon>FoodListing.aspx</DependentUpon>
+    <Compile Include="ProductListing.aspx.designer.cs">
+      <DependentUpon>ProductListing.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FoodyMan.Master.cs">
-      <DependentUpon>FoodyMan.Master</DependentUpon>
+    <Compile Include="PawMart.Master.cs">
+      <DependentUpon>PawMart.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FoodyMan.Master.designer.cs">
-      <DependentUpon>FoodyMan.Master</DependentUpon>
+    <Compile Include="PawMart.Master.designer.cs">
+      <DependentUpon>PawMart.Master</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -311,7 +311,7 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartItemViewModel.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\FoodItem.cs" />
+    <Compile Include="Models\ProductItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\OrderItem.cs" />
@@ -358,13 +358,13 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Repository\CategoryRepository.cs" />
-    <Compile Include="Repository\FoodItemRepository.cs" />
+    <Compile Include="Repository\ProductItemRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="service\CartService.cs" />
     <Compile Include="service\CategoryService.cs" />
-    <Compile Include="service\FoodItemService.cs" />
+    <Compile Include="service\ProductService.cs" />
     <Compile Include="service\OrderService.cs" />
     <Compile Include="service\UserService.cs" />
     <Compile Include="UserManagement.aspx.cs">
@@ -385,7 +385,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FoodyMan.Master" />
+    <Content Include="PawMart.Master" />
     <Content Include="Admin.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">

@@ -1,9 +1,9 @@
-﻿using FoodyMan.Models;
-using FoodyMan.service;
+﻿using PawMart.Models;
+using PawMart.service;
 using System;
 using System.Web.UI;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class ManageProfile : System.Web.UI.Page
     {

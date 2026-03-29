@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/FoodyMan.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="FoodyMan.Contact" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="PawMart.Contact" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
       /* Contact Page Styles */
@@ -350,7 +350,7 @@
                 </div>
                 <div class="info-content">
                     <h3>Email Address</h3>
-                    <p>support@foodyman.com<br>info@foodyman.com</p>
+                    <p>support@PawMart.com<br>info@PawMart.com</p>
                 </div>
             </div>
             
@@ -432,7 +432,7 @@
                 <i class="fas fa-chevron-down"></i>
             </div>
             <div class="faq-answer">
-                <p>Yes, we offer comprehensive corporate catering services for events, meetings, and office lunches. Please contact our catering department at catering@foodyman.com for custom quotes and menu options.</p>
+                <p>Yes, we offer comprehensive corporate catering services for events, meetings, and office lunches. Please contact our catering department at catering@PawMart.com for custom quotes and menu options.</p>
             </div>
         </div>
         

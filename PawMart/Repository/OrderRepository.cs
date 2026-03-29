@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
-using FoodyMan.Models;
-using FoodyMan.Utility;
+using PawMart.Models;
+using PawMart.Utility;
 using MySql.Data.MySqlClient;
 
-namespace FoodyMan.Repository
+namespace PawMart.Repository
 {
     public class OrderRepository
     {
@@ -20,7 +20,7 @@ namespace FoodyMan.Repository
         public int InsertOrder(Order order)
         {
             order.OrderID = IdGenerator.GenerateOrderId();
-            var paymentID = IdGenerator.GenerateFoodItemId();
+            var paymentID = IdGenerator.GeneratePaymentID();
 
 
             string query1 = @"
@@ -49,7 +49,7 @@ namespace FoodyMan.Repository
                     command.Parameters.AddWithValue("@Amount", order.TotalAmount);
                     command.Parameters.AddWithValue("@PaymentMethod", order.PaymentMethod);
                     command.Parameters.AddWithValue("@PaymentStatus", order.PaymentStatus);
-                    command.Parameters.AddWithValue("@TransactionID", IdGenerator.GenerateFoodItemId());
+                    command.Parameters.AddWithValue("@TransactionID", IdGenerator.GenerateTransactionID());
                     command.Parameters.AddWithValue("@PaymentDate", order.OrderDate);
 
                     connection.Open();
@@ -97,9 +97,9 @@ namespace FoodyMan.Repository
         {
             string query = @"
                 INSERT INTO OrderItems
-                (OrderItemID,OrderID, FoodItemID, Quantity, Price, Subtotal) 
+                (OrderItemID,OrderID, ProductItemID, Quantity, Price, Subtotal) 
                 VALUES 
-                (@OrderItemID,@OrderID, @FoodItemID, @Quantity, @Price, @Subtotal)";
+                (@OrderItemID,@OrderID, @ProductItemID, @Quantity, @Price, @Subtotal)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -113,7 +113,7 @@ namespace FoodyMan.Repository
                         // Add parameters
                         command.Parameters.AddWithValue("@OrderItemID", item.OrderItemID);
                         command.Parameters.AddWithValue("@OrderID", orderId);
-                        command.Parameters.AddWithValue("@FoodItemID", item.FoodItemID);
+                        command.Parameters.AddWithValue("@ProductItemID", item.ProductItemID);
                         command.Parameters.AddWithValue("@Quantity", item.Quantity);
                         command.Parameters.AddWithValue("@Price", item.Price);
                         command.Parameters.AddWithValue("@Subtotal", item.Subtotal);
@@ -187,7 +187,7 @@ namespace FoodyMan.Repository
                             {
                                 OrderItemID = Convert.ToInt32(reader["OrderItemID"]),
                                 OrderID = Convert.ToInt32(reader["OrderID"]),
-                                FoodItemID = Convert.ToInt32(reader["FoodItemID"]),
+                                ProductItemID = Convert.ToInt32(reader["ProductItemID"]),
                                 Quantity = Convert.ToInt32(reader["Quantity"]),
                                 Price = Convert.ToDecimal(reader["Price"]),
                                 Subtotal = Convert.ToDecimal(reader["Subtotal"])
@@ -494,10 +494,10 @@ namespace FoodyMan.Repository
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(
-                    "SELECT oi.OrderItemID, oi.OrderID, oi.FoodItemID, oi.Quantity, oi.Price, oi.Subtotal, " +
-                    "fi.Name AS Name, fi.ImageUrl AS FoodItemImage " +
+                    "SELECT oi.OrderItemID, oi.OrderID, oi.ProductItemID, oi.Quantity, oi.Price, oi.Subtotal, " +
+                    "fi.Name AS Name, fi.ImageUrl AS ProductItemImage " +
                     "FROM OrderItems oi " +
-                    "INNER JOIN FoodItem fi ON oi.FoodItemID = fi.FoodItemID " +
+                    "INNER JOIN ProductItem fi ON oi.ProductItemID = fi.ProductItemID " +
                     "WHERE oi.OrderID = @OrderID", connection);
 
                 command.Parameters.AddWithValue("@OrderID", orderId);
@@ -511,9 +511,9 @@ namespace FoodyMan.Repository
                     {
                         OrderItemID = Convert.ToInt32(reader["OrderItemID"]),
                         OrderID = Convert.ToInt32(reader["OrderID"]),
-                        FoodItemID = Convert.ToInt32(reader["FoodItemID"]),
-                        FoodItemName = reader["Name"].ToString(),
-                        FoodItemImage = reader["FoodItemImage"] != DBNull.Value ? reader["FoodItemImage"].ToString() : null,
+                        ProductItemID = Convert.ToInt32(reader["ProductItemID"]),
+                        ProductItemID = reader["Name"].ToString(),
+                        ProductItemID = reader["ProductItemImage"] != DBNull.Value ? reader["ProductItemImage"].ToString() : null,
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         Price = Convert.ToDecimal(reader["Price"]),
                         Subtotal = Convert.ToDecimal(reader["Subtotal"])
@@ -645,10 +645,10 @@ namespace FoodyMan.Repository
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-                    SELECT oi.OrderItemID, oi.OrderID, oi.FoodItemID, oi.Quantity, oi.Price,
-                           f.Name AS FoodItemName, f.ImageUrl AS FoodItemImage
+                    SELECT oi.OrderItemID, oi.OrderID, oi.ProductItemID, oi.Quantity, oi.Price,
+                           f.Name AS ProductItemName, f.ImageUrl AS ProductItemImage
                     FROM OrderItems oi
-                    INNER JOIN FoodItem f ON oi.FoodItemID = f.FoodItemID
+                    INNER JOIN ProductItem f ON oi.ProductItemID = f.ProductItemID
                     WHERE oi.OrderID = @OrderID";
 
                 SqlCommand command = new SqlCommand(query, connection);
@@ -668,9 +668,9 @@ namespace FoodyMan.Repository
                         {
                             OrderItemID = Convert.ToInt32(reader["OrderItemID"]),
                             OrderID = Convert.ToInt32(reader["OrderID"]),
-                            FoodItemID = Convert.ToInt32(reader["FoodItemID"]),
-                            FoodItemName = reader["FoodItemName"].ToString(),
-                            FoodItemImage = reader["FoodItemImage"] != DBNull.Value ? reader["FoodItemImage"].ToString() : string.Empty,
+                            ProductItemID = Convert.ToInt32(reader["ProductItemID"]),
+                            ProductName = reader["ProductItemName"].ToString(),
+                            ProductImage = reader["ProductItemImage"] != DBNull.Value ? reader["ProductItemImage"].ToString() : string.Empty,
                             Quantity = quantity,
                             Price = price,
                             Subtotal = subtotal

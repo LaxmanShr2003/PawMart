@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
-using FoodyMan.Models;
-using FoodyMan.service;
-using FoodyMan.Services;
+using PawMart.Models;
+using PawMart.service;
+using PawMart.Services;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class FoodCart : System.Web.UI.Page  // Changed from 'Cart' to 'FoodCart' to match ASPX
     {
         private CartService _cartService;
-        private FoodItemService _foodItemService;
+        private ProductService _productService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             _cartService = new CartService();
-            _foodItemService = new FoodItemService();
+            _productService = new ProductService();
 
             if (!IsPostBack)
             {
@@ -90,7 +90,7 @@ namespace FoodyMan
 
         private void DecreaseItemQuantity(List<CartItem> cartItems, int cartItemId)
         {
-            var item = cartItems.Find(i => i.FoodItemID == cartItemId);
+            var item = cartItems.Find(i => i.ProductItemID == cartItemId);
             if (item != null)
             {
                 if (item.Quantity > 1)
@@ -106,7 +106,7 @@ namespace FoodyMan
 
         private void IncreaseItemQuantity(List<CartItem> cartItems, int cartItemId)
         {
-            var item = cartItems.Find(i => i.FoodItemID == cartItemId);
+            var item = cartItems.Find(i => i.ProductItemID == cartItemId);
             if (item != null)
             {
                 item.Quantity++;
@@ -115,7 +115,7 @@ namespace FoodyMan
 
         private void RemoveCartItem(List<CartItem> cartItems, int cartItemId)
         {
-            var item = cartItems.Find(i => i.FoodItemID == cartItemId);  // Changed from FoodID to FoodItemId for consistency
+            var item = cartItems.Find(i => i.ProductItemID == cartItemId);  // Changed from FoodID to FoodItemId for consistency
             if (item != null)
             {
                 cartItems.Remove(item);

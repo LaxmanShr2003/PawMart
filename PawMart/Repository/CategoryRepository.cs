@@ -1,5 +1,5 @@
-﻿using FoodyMan.Models;
-using FoodyMan.Utility;
+﻿using PawMart.Models;
+using PawMart.Utility;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace FoodyMan.Repository
+namespace PawMart.Repository
 {
     public class CategoryRepository
     {

@@ -1,7 +1,7 @@
-﻿using FoodyMan.Models;
-using FoodyMan.Repositories;
-using FoodyMan.service;
-using FoodyMan.Services;
+﻿using PawMart.Models;
+using PawMart.Repositories;
+using PawMart.service;
+using PawMart.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +9,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FoodyMan
+namespace PawMart
 {
     public partial class FoodDetails : System.Web.UI.Page
     {
         // Services
-        private readonly FoodItemService _foodItemService;
+        private readonly ProductService _productService;
         private readonly CategoryService _categoryService;
         private readonly CartService _cartService;
 
@@ -22,11 +22,11 @@ namespace FoodyMan
         private const int RelatedFoodsCount = 4;
 
         // Current food item
-        private FoodItem _currentFoodItem;
+        private Product _currentProduct;
 
         public FoodDetails()
         {
-            _foodItemService = new FoodItemService();
+            _productService = new ProductService();
             _categoryService = new CategoryService();
             _cartService = new CartService();
         }
@@ -36,10 +36,10 @@ namespace FoodyMan
             if (!IsPostBack)
             {
                 // Get food item ID from URL parameter
-                if (!string.IsNullOrEmpty(Request.QueryString["id"]) && int.TryParse(Request.QueryString["id"], out int foodItemId))
+                if (!string.IsNullOrEmpty(Request.QueryString["id"]) && int.TryParse(Request.QueryString["id"], out int productItemId))
                 {
                     // Load the food item details
-                    LoadFoodDetails(foodItemId);
+                    LoadFoodDetails(productItemId);
                 }
                 else
                 {
@@ -54,9 +54,9 @@ namespace FoodyMan
             try
             {
                 // Get food item from service
-                _currentFoodItem = _foodItemService.GetFoodItemById(foodItemId);
+                _currentProduct = _productService.GetProductById(foodItemId);
 
-                if (_currentFoodItem == null)
+                if (_currentProduct == null)
                 {
                     // Food item not found
                     ShowErrorPanel();
@@ -68,7 +68,7 @@ namespace FoodyMan
                 pnlError.Visible = false;
 
                 // Set food details in UI
-                PopulateFoodDetails(_currentFoodItem);
+                PopulateFoodDetails(_currentProduct);
 
                 //// Load related foods
                 //LoadRelatedFoods(_currentFoodItem.CategoryID, foodItemId);
@@ -81,38 +81,38 @@ namespace FoodyMan
             }
         }
 
-        private void PopulateFoodDetails(FoodItem foodItem)
+        private void PopulateFoodDetails(Product productItem)
         {
             // Set breadcrumb
-            currentFoodName.InnerText = foodItem.Name;
+            currentProduct.InnerText = productItem.Name;
 
             // Set food item details
-            foodName.InnerText = foodItem.Name;
-            foodDescription.InnerText = foodItem.Description;
+            productName.InnerText = productItem.Name;
+            productDescription.InnerText = productItem.Description;
 
             // Set food image
-            string imageUrl = ResolveUrl(foodItem.ImageURL);
-            imgFood.ImageUrl = imageUrl;
-            imgFood.AlternateText = foodItem.Name;
-            imgFood.Attributes["onerror"] = $"this.src='{ResolveUrl("~/Images/placeholder-food.jpg")}'";
+            string imageUrl = ResolveUrl(productItem.ImageURL);
+            imgProduct.ImageUrl = imageUrl;
+            imgProduct.AlternateText = productItem.Name;
+            imgProduct.Attributes["onerror"] = $"this.src='{ResolveUrl("~/Images/placeholder-food.jpg")}'";
 
             // Set price information
-            if (foodItem.DiscountPrice < foodItem.Price)
+            if (productItem.DiscountPrice < productItem.Price)
             {
-                currentPrice.InnerText = $"${foodItem.DiscountPrice:0.00}";
-                originalPrice.InnerText = $"${foodItem.Price:0.00}";
+                currentPrice.InnerText = $"${productItem.DiscountPrice:0.00}";
+                originalPrice.InnerText = $"${productItem.Price:0.00}";
                 pnlOriginalPrice.Visible = true;
                 pnlDiscountTag.Visible = true;
             }
             else
             {
-                currentPrice.InnerText = $"${foodItem.Price:0.00}";
+                currentPrice.InnerText = $"${productItem.Price:0.00}";
                 pnlOriginalPrice.Visible = false;
                 pnlDiscountTag.Visible = false;
             }
 
             // Set availability
-            if (foodItem.IsAvailable)
+            if (productItem.IsAvailable)
             {
                 pnlAvailable.Visible = true;
                 pnlNotAvailable.Visible = false;
@@ -130,24 +130,24 @@ namespace FoodyMan
             }
 
             // Set featured tag
-            pnlFeaturedTag.Visible = foodItem.IsFeatured;
+            pnlFeaturedTag.Visible = productItem.IsFeatured;
 
             // Set category
             try
             {
-                var category = _categoryService.GetCategoryById(foodItem.CategoryID);
+                var category = _categoryService.GetCategoryById(productItem.CategoryID);
                 if (category != null)
                 {
-                    foodCategory.InnerText = category.Name;
+                    productCategory.InnerText = category.Name;
                 }
                 else
                 {
-                    foodCategory.InnerText = "Uncategorized";
+                    productCategory.InnerText = "Uncategorized";
                 }
             }
             catch
             {
-                foodCategory.InnerText = "Uncategorized";
+                productCategory.InnerText = "Uncategorized";
             }
 
             // Set serves (this could be added as a property to your FoodItem if needed)
@@ -250,10 +250,10 @@ namespace FoodyMan
                 }
 
                 // Get food item ID
-                int foodItemId = int.Parse(Request.QueryString["id"]);
+                int productItemId = int.Parse(Request.QueryString["id"]);
 
                 // Add to cart
-                _cartService.AddToCart(currentUser.UserID, foodItemId, quantity);
+                _cartService.AddToCart(currentUser.UserID, productItemId, quantity);
 
                 // Show success message
                 ShowMessage("Item added to your cart successfully!");
@@ -269,24 +269,24 @@ namespace FoodyMan
         protected void btnContinueShopping_Click(object sender, EventArgs e)
         {
             // Redirect back to food listing page
-            Response.Redirect("FoodListing.aspx");
+            Response.Redirect("ProductListing.aspx");
         }
 
         protected void btnBackToMenu_Click(object sender, EventArgs e)
         {
             // Redirect back to food listing page
-            Response.Redirect("FoodListing.aspx");
+            Response.Redirect("ProductListing.aspx");
         }
 
         protected void rptRelatedFoods_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            int foodItemId = Convert.ToInt32(e.CommandArgument);
+            int productItemId = Convert.ToInt32(e.CommandArgument);
 
             switch (e.CommandName)
             {
                 case "ViewDetails":
                     // Redirect to food details page
-                    Response.Redirect($"FoodDetails.aspx?id={foodItemId}");
+                    Response.Redirect($"ProductDetails.aspx?id={productItemId}");
                     break;
 
                 case "AddToCart":
@@ -302,7 +302,7 @@ namespace FoodyMan
                         }
 
                         // Add to cart (default quantity = 1)
-                        _cartService.AddToCart(currentUser.UserID, foodItemId);
+                        _cartService.AddToCart(currentUser.UserID, productItemId);
 
                         // Show success message
                         ShowMessage("Item added to your cart successfully!");

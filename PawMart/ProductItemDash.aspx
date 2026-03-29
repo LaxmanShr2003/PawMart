@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="FoodItemDash.aspx.cs" Inherits="FoodyMan.FoodItemDash" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ProductItemDash.aspx.cs" Inherits="PawMart.ProductItemDash" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <style>
@@ -229,22 +229,22 @@
             }
         }
     </style>
-    <h2>Food Item Dashboard</h2>
+    <h2>Product Item Dashboard</h2>
     <hr />
 
     <div class="header-buttons">
         <!-- Back Button -->
                <button type="button" class="btn btn-back" onclick="window.location.href='Admindash.aspx'">Back</button>
         <!-- Add Food Item Button (Top-Right) -->
-        <button type="button" class="btn btn-add-food-item" onclick="openAddModal()">Add Food Item</button>
+        <button type="button" class="btn btn-add-food-item" onclick="openAddModal()">Add Product Item</button>
     </div>
 
     <!-- Food Item Table -->
     <div class="food-item-table-container">
         <asp:GridView ID="gvFoodItems" runat="server" CssClass="food-item-table" AutoGenerateColumns="false"
-            OnRowCommand="gvFoodItems_RowCommand" DataKeyNames="FoodItemID">
+            OnRowCommand="gvProductItems_RowCommand" DataKeyNames="ProductItemID">
             <Columns>
-                <asp:BoundField DataField="FoodItemID" HeaderText="ID" />
+                <asp:BoundField DataField="ProductItemID" HeaderText="ID" />
                 <asp:BoundField DataField="Name" HeaderText="Name" />
                 <asp:BoundField DataField="Description" HeaderText="Description" />
                 <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
@@ -256,12 +256,12 @@
          <asp:TemplateField HeaderText="Actions">
     <ItemTemplate>
         <div class="action-buttons">
-            <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn-edit" CommandName="EditFoodItem"
-                CommandArgument='<%# Eval("FoodItemID") %>' OnClick="btnEdit_Click">
+            <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn-edit" CommandName="EditProductItem"
+                CommandArgument='<%# Eval("ProductItemID") %>' OnClick="btnEdit_Click">
                 Edit
             </asp:LinkButton>
-            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn-delete" CommandName="DeleteFoodItem"
-                CommandArgument='<%# Eval("FoodItemID") %>' OnClientClick="return confirm('Are you sure you want to delete this food item?');">
+            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn-delete" CommandName="DeleteProductItem"
+                CommandArgument='<%# Eval("ProductItemID") %>' OnClientClick="return confirm('Are you sure you want to delete this product item?');">
                 Delete
             </asp:LinkButton>
         </div>
@@ -269,16 +269,16 @@
 </asp:TemplateField>
             </Columns>
             <EmptyDataTemplate>
-                <div style="text-align: center; padding: 20px;">No food items found.</div>
+                <div style="text-align: center; padding: 20px;">No product items found.</div>
             </EmptyDataTemplate>
         </asp:GridView>
     </div>
 
-    <!-- Add Food Item Modal -->
-    <div id="addFoodItemModal" class="modal">
+    <!-- Add Product Item Modal -->
+    <div id="addProductItemModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Add New Food Item</h2>
+                <h2>Add New Product Item</h2>
                 <span class="close" onclick="closeAddModal()">&times;</span>
             </div>
             <asp:Label ID="lblMessage" runat="server" CssClass="error-message"></asp:Label>
@@ -288,7 +288,7 @@
                 <asp:Label ID="lblName" runat="server" Text="Name:" AssociatedControlID="txtName"></asp:Label>
                 <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName"
-                    ErrorMessage="Name is required." CssClass="error-message" ValidationGroup="AddFoodItemGroup"></asp:RequiredFieldValidator>
+                    ErrorMessage="Name is required." CssClass="error-message" ValidationGroup="AddProductItemGroup"></asp:RequiredFieldValidator>
             </div>
 
             <!-- Description -->
@@ -296,7 +296,7 @@
                 <asp:Label ID="lblDescription" runat="server" Text="Description:" AssociatedControlID="txtDescription"></asp:Label>
                 <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ControlToValidate="txtDescription"
-                    ErrorMessage="Description is required." CssClass="error-message" ValidationGroup="AddFoodItemGroup"></asp:RequiredFieldValidator>
+                    ErrorMessage="Description is required." CssClass="error-message" ValidationGroup="AddProductItemGroup"></asp:RequiredFieldValidator>
             </div>
 
             <!-- Price -->
@@ -304,7 +304,7 @@
                 <asp:Label ID="lblPrice" runat="server" Text="Price:" AssociatedControlID="txtPrice"></asp:Label>
                 <asp:TextBox ID="txtPrice" runat="server" TextMode="Number" step="0.01"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvPrice" runat="server" ControlToValidate="txtPrice"
-                    ErrorMessage="Price is required." CssClass="error-message" ValidationGroup="AddFoodItemGroup"></asp:RequiredFieldValidator>
+                    ErrorMessage="Price is required." CssClass="error-message" ValidationGroup="AddItemGroup"></asp:RequiredFieldValidator>
             </div>
 
             <!-- Discount Price -->
@@ -318,7 +318,7 @@
     <asp:Label ID="lblImageURL" runat="server" Text="Image:" AssociatedControlID="fileUploadImage"></asp:Label>
     <asp:FileUpload ID="fileUploadImage" runat="server" CssClass="form-control" />
     <asp:RequiredFieldValidator ID="rfvImageURL" runat="server" ControlToValidate="fileUploadImage"
-        ErrorMessage="Image is required." CssClass="error-message" ValidationGroup="AddFoodItemGroup"></asp:RequiredFieldValidator>
+        ErrorMessage="Image is required." CssClass="error-message" ValidationGroup="AddProductItemGroup"></asp:RequiredFieldValidator>
 </div>
 
             <!-- Category ID -->
@@ -341,29 +341,29 @@
 
             <!-- Submit Button -->
             <div class="btn-container">
-                <asp:Button ID="btnAddFoodItem" runat="server" Text="Add Food Item" OnClick="btnAddFoodItem_Click"
-                    CssClass="btn" ValidationGroup="AddFoodItemGroup" />
+                <asp:Button ID="btnAddProductItem" runat="server" Text="Add Product Item" OnClick="btnAddProductItem_Click"
+                    CssClass="btn" ValidationGroup="AddProductItemGroup" />
             </div>
         </div>
     </div>
 
     <!-- Edit Food Item Modal -->
-    <div id="editFoodItemModal" class="modal">
+    <div id="editProductItemModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Edit Food Item</h2>
+                <h2>Edit Product Item</h2>
                 <span class="close" onclick="closeEditModal()">&times;</span>
             </div>
             <asp:Label ID="lblEditMessage" runat="server" CssClass="error-message"></asp:Label>
 
-            <asp:HiddenField ID="hdnFoodItemID" runat="server" />
+            <asp:HiddenField ID="hdnProductItemID" runat="server" />
 
             <!-- Name -->
             <div class="form-group">
                 <asp:Label ID="lblEditName" runat="server" Text="Name:" AssociatedControlID="txtEditName"></asp:Label>
                 <asp:TextBox ID="txtEditName" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvEditName" runat="server" ControlToValidate="txtEditName"
-                    ErrorMessage="Name is required." CssClass="error-message" ValidationGroup="EditFoodItemGroup"></asp:RequiredFieldValidator>
+                    ErrorMessage="Name is required." CssClass="error-message" ValidationGroup="EditProductItemGroup"></asp:RequiredFieldValidator>
             </div>
 
             <!-- Description -->
@@ -371,7 +371,7 @@
                 <asp:Label ID="lblEditDescription" runat="server" Text="Description:" AssociatedControlID="txtEditDescription"></asp:Label>
                 <asp:TextBox ID="txtEditDescription" runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvEditDescription" runat="server" ControlToValidate="txtEditDescription"
-                    ErrorMessage="Description is required." CssClass="error-message" ValidationGroup="EditFoodItemGroup"></asp:RequiredFieldValidator>
+                    ErrorMessage="Description is required." CssClass="error-message" ValidationGroup="EditProductItemGroup"></asp:RequiredFieldValidator>
             </div>
 
             <!-- Price -->
@@ -379,7 +379,7 @@
                 <asp:Label ID="lblEditPrice" runat="server" Text="Price:" AssociatedControlID="txtEditPrice"></asp:Label>
                 <asp:TextBox ID="txtEditPrice" runat="server" TextMode="Number" step="0.01"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvEditPrice" runat="server" ControlToValidate="txtEditPrice"
-                    ErrorMessage="Price is required." CssClass="error-message" ValidationGroup="EditFoodItemGroup"></asp:RequiredFieldValidator>
+                    ErrorMessage="Price is required." CssClass="error-message" ValidationGroup="EditProductItemGroup"></asp:RequiredFieldValidator>
             </div>
 
             <!-- Discount Price -->
@@ -393,7 +393,7 @@
     <asp:Label ID="lblEditImageURL" runat="server" Text="Image:" AssociatedControlID="fileUploadImage"></asp:Label>
     <asp:FileUpload ID="fileUpload1" runat="server" CssClass="form-control" />
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="fileUploadImage"
-        ErrorMessage="Image is required." CssClass="error-message" ValidationGroup="AddFoodItemGroup"></asp:RequiredFieldValidator>
+        ErrorMessage="Image is required." CssClass="error-message" ValidationGroup="AddProductItemGroup"></asp:RequiredFieldValidator>
 </div>
 
             <!-- Category ID -->
@@ -401,7 +401,7 @@
                 <asp:Label ID="lblEditCategoryID" runat="server" Text="Category ID:" AssociatedControlID="ddlEditCategoryID"></asp:Label>
                 <asp:DropDownList ID="ddlEditCategoryID" runat="server" CssClass="form-control"></asp:DropDownList>
                 <asp:RequiredFieldValidator ID="rfvEditCategoryID" runat="server" ControlToValidate="ddlEditCategoryID"
-                    ErrorMessage="Category ID is required." CssClass="error-message" ValidationGroup="EditFoodItemGroup"></asp:RequiredFieldValidator>
+                    ErrorMessage="Category ID is required." CssClass="error-message" ValidationGroup="EditProductItemGroup"></asp:RequiredFieldValidator>
             </div>
 
             <!-- Is Available -->
@@ -416,8 +416,8 @@
 
             <!-- Submit Button -->
             <div class="btn-container">
-                <asp:Button ID="btnUpdateFoodItem" runat="server" Text="Update Food Item" OnClick="btnUpdateFoodItem_Click"
-                    CssClass="btn" ValidationGroup="EditFoodItemGroup" />
+                <asp:Button ID="btnUpdateProductItem" runat="server" Text="Update Product Item" OnClick="btnUpdateProductItem_Click"
+                    CssClass="btn" ValidationGroup="EditProductItemGroup" />
             </div>
         </div>
     </div>
@@ -439,27 +439,27 @@
             document.getElementById('<%=lblMessage.ClientID%>').innerText = '';
 
             // Show the modal
-            document.getElementById("addFoodItemModal").style.display = "flex";
+            document.getElementById("addProductItemModal").style.display = "flex";
         }
 
         function closeAddModal() {
-            document.getElementById("addFoodItemModal").style.display = "none";
+            document.getElementById("addProductItemModal").style.display = "none";
         }
 
         function openEditModal() {
             // Just show the modal - data will be populated server-side
-            document.getElementById("editFoodItemModal").style.display = "flex";
+            document.getElementById("editProductItemModal").style.display = "flex";
             return false; // Prevent default action
         }
 
         function closeEditModal() {
-            document.getElementById("editFoodItemModal").style.display = "none";
+            document.getElementById("editProductItemModal").style.display = "none";
         }
 
         // Close modals if user clicks outside the modal content
         window.onclick = function (event) {
-            var addModal = document.getElementById("addFoodItemModal");
-            var editModal = document.getElementById("editFoodItemModal");
+            var addModal = document.getElementById("addProductItemModal");
+            var editModal = document.getElementById("editProductItemModal");
 
             if (event.target === addModal) {
                 closeAddModal();

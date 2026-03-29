@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FoodyMan
+namespace PawMart
 {
 
 
-    public partial class FoodCart
+    public partial class ProductCart
     {
 
         /// <summary>
