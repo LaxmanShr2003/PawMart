@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace PawMart
 {
-    public partial class FoodDetails : System.Web.UI.Page
+    public partial class ProductDetails : System.Web.UI.Page
     {
         // Services
         private readonly ProductService _productService;
@@ -24,7 +24,7 @@ namespace PawMart
         // Current food item
         private Product _currentProduct;
 
-        public FoodDetails()
+        public ProductDetails()
         {
             _productService = new ProductService();
             _categoryService = new CategoryService();

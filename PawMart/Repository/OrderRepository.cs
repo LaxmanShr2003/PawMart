@@ -10,7 +10,7 @@ namespace PawMart.Repository
 {
     public class OrderRepository
     {
-        private string connectionString;
+        private string  connectionString;
 
         public OrderRepository()
         {
@@ -512,8 +512,8 @@ namespace PawMart.Repository
                         OrderItemID = Convert.ToInt32(reader["OrderItemID"]),
                         OrderID = Convert.ToInt32(reader["OrderID"]),
                         ProductItemID = Convert.ToInt32(reader["ProductItemID"]),
-                        ProductItemID = reader["Name"].ToString(),
-                        ProductItemID = reader["ProductItemImage"] != DBNull.Value ? reader["ProductItemImage"].ToString() : null,
+                        ProductName = reader["Name"].ToString(),
+                        ProductImage = reader["ProductItemImage"] != DBNull.Value ? reader["ProductItemImage"].ToString() : null,
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         Price = Convert.ToDecimal(reader["Price"]),
                         Subtotal = Convert.ToDecimal(reader["Subtotal"])

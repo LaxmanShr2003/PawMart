@@ -15,13 +15,13 @@ namespace PawMart
     {
 
         /// <summary>
-        /// currentFoodName control.
+        /// currentProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl currentFoodName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl currentProduct;
 
         /// <summary>
         /// pnlFoodDetails control.
@@ -33,13 +33,13 @@ namespace PawMart
         protected global::System.Web.UI.WebControls.Panel pnlFoodDetails;
 
         /// <summary>
-        /// imgFood control.
+        /// imgProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgFood;
+        protected global::System.Web.UI.WebControls.Image imgProduct;
 
         /// <summary>
         /// pnlFeaturedTag control.
@@ -60,22 +60,22 @@ namespace PawMart
         protected global::System.Web.UI.WebControls.Panel pnlDiscountTag;
 
         /// <summary>
-        /// foodName control.
+        /// productName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl foodName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl productName;
 
         /// <summary>
-        /// foodDescription control.
+        /// productDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl foodDescription;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl productDescription;
 
         /// <summary>
         /// currentPrice control.
@@ -177,13 +177,13 @@ namespace PawMart
         protected global::System.Web.UI.WebControls.Button btnContinueShopping;
 
         /// <summary>
-        /// foodCategory control.
+        /// productCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl foodCategory;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl productCategory;
 
         /// <summary>
         /// foodServes control.

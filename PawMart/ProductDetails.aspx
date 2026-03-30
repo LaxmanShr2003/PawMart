@@ -371,14 +371,14 @@
             <span class="breadcrumb-separator">/</span>
             <a href="FoodListing.aspx">Menu</a>
             <span class="breadcrumb-separator">/</span>
-            <span id="currentFoodName" runat="server"></span>
+            <span id="currentProduct" runat="server"></span>
         </div>
 
         <asp:Panel ID="pnlFoodDetails" runat="server">
             <div class="food-details">
                 <!-- Food Image -->
                 <div class="food-image-container">
-                    <asp:Image ID="imgFood" runat="server" CssClass="food-image" />
+                    <asp:Image ID="imgProduct" runat="server" CssClass="food-image" />
                 </div>
 
                 <!-- Food Information -->
@@ -392,8 +392,8 @@
                         </asp:Panel>
                     </div>
 
-                    <h1 class="food-name" id="foodName" runat="server"></h1>
-                    <p class="food-description" id="foodDescription" runat="server"></p>
+                    <h1 class="food-name" id="productName" runat="server"></h1>
+                    <p class="food-description" id="productDescription" runat="server"></p>
 
                     <div class="food-price">
                         <span class="price-current" id="currentPrice" runat="server"></span>
@@ -428,7 +428,7 @@
                     <div class="food-meta">
                         <div class="meta-item">
                             <span class="meta-label">Category:</span>
-                            <span class="meta-value" id="foodCategory" runat="server"></span>
+                            <span class="meta-value" id="productCategory" runat="server"></span>
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">Serves:</span>

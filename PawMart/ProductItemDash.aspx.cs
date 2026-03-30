@@ -7,12 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace PawMart
 {
-    public partial class FoodItemDash : System.Web.UI.Page
+    public partial class ProductItemDash : System.Web.UI.Page
     {
         private readonly ProductService _productService;
         private readonly CategoryService _categoryService;
 
-        public FoodItemDash()
+        public ProductItemDash()
         {
             _productService = new ProductService();
             _categoryService = new CategoryService();
@@ -136,7 +136,7 @@ namespace PawMart
 
                         // Save the file to the upload folder
                         string filePath = System.IO.Path.Combine(uploadFolder, fileName);
-                        int productItemId = Convert.ToInt32(hdnFoodItemID.Value);
+                        int productItemId = Convert.ToInt32(hdnProductItemID.Value);
                     Product existingProduct = _productService.GetProductById(productItemId);
 
                         if (existingProduct != null)
@@ -217,7 +217,7 @@ namespace PawMart
                 if (productItem != null)
                 {
                     // Populate the Edit modal fields
-                    hdnFoodItemID.Value = productItem.ProductItemID.ToString();
+                    hdnProductItemID.Value = productItem.ProductItemID.ToString();
                     txtEditName.Text = productItem.Name;
                     txtEditDescription.Text = productItem.Description;
                     txtEditPrice.Text = productItem.Price.ToString();
@@ -242,7 +242,7 @@ namespace PawMart
             if (productItem != null)
             {
                 // Populate the Edit modal fields
-                hdnFoodItemID.Value = productItem.ProductItemID.ToString();
+                hdnProductItemID.Value = productItem.ProductItemID.ToString();
                 txtEditName.Text = productItem.Name;
                 txtEditDescription.Text = productItem.Description;
                 txtEditPrice.Text = productItem.Price.ToString();

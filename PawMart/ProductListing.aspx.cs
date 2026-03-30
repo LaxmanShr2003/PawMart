@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace PawMart
 {
-    public partial class FoodListing : System.Web.UI.Page
+    public partial class ProductListing : System.Web.UI.Page
     {
         // Services
         private readonly ProductService _productService;
@@ -21,7 +21,7 @@ namespace PawMart
         // Page size for pagination
         private const int PageSize = 12;
 
-        public FoodListing()
+        public ProductListing()
         {
             _productService = new ProductService();
             _categoryService = new CategoryService();
@@ -416,13 +416,13 @@ namespace PawMart
             }
         }
 
-        private void UpdateCartCount(int count)
-        {
+        //private void UpdateCartCount(int count)
+        //{
 
 
 
          
-        }
+        //}
 
       
     }

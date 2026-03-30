@@ -7,7 +7,7 @@ using PawMart.Services;
 
 namespace PawMart
 {
-    public partial class FoodCart : System.Web.UI.Page  // Changed from 'Cart' to 'FoodCart' to match ASPX
+    public partial class ProductCart : System.Web.UI.Page  // Changed from 'Cart' to 'FoodCart' to match ASPX
     {
         private CartService _cartService;
         private ProductService _productService;

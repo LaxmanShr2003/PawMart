@@ -109,7 +109,7 @@ namespace PawMart
             {
                 orderItems.Add(new OrderItem
                 {
-                    FoodItemID = cartItem.FoodItemID,
+                    ProductItemID = cartItem.ProductID,
                     Quantity = cartItem.Quantity,
                     Price = cartItem.Price,
                     Subtotal = cartItem.Price * cartItem.Quantity
