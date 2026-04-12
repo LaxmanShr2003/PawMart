@@ -14,7 +14,7 @@ namespace PawMart.Repository
 
         public OrderRepository()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["PawMartConnectionString"].ConnectionString;
         }
 
         public int InsertOrder(Order order)
@@ -497,7 +497,7 @@ namespace PawMart.Repository
                     "SELECT oi.OrderItemID, oi.OrderID, oi.ProductItemID, oi.Quantity, oi.Price, oi.Subtotal, " +
                     "fi.Name AS Name, fi.ImageUrl AS ProductItemImage " +
                     "FROM OrderItems oi " +
-                    "INNER JOIN ProductItem fi ON oi.ProductItemID = fi.ProductItemID " +
+                    "INNER JOIN Product fi ON oi.ProductItemID = fi.ProductItemID " +
                     "WHERE oi.OrderID = @OrderID", connection);
 
                 command.Parameters.AddWithValue("@OrderID", orderId);
@@ -648,7 +648,7 @@ namespace PawMart.Repository
                     SELECT oi.OrderItemID, oi.OrderID, oi.ProductItemID, oi.Quantity, oi.Price,
                            f.Name AS ProductItemName, f.ImageUrl AS ProductItemImage
                     FROM OrderItems oi
-                    INNER JOIN ProductItem f ON oi.ProductItemID = f.ProductItemID
+                    INNER JOIN Product f ON oi.ProductItemID = f.ProductItemID
                     WHERE oi.OrderID = @OrderID";
 
                 SqlCommand command = new SqlCommand(query, connection);

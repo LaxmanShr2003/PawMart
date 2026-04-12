@@ -124,7 +124,7 @@ namespace PawMart
 
         protected void btnContinueShopping_Click(object sender, EventArgs e)
         {
-            Response.Redirect("FoodListing.aspx");
+            Response.Redirect("ProductListing.aspx");
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)

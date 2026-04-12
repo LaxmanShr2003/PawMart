@@ -230,7 +230,7 @@
             <i class="fa fa-receipt"></i>
             <h4 class="mb-3">No orders found</h4>
             <p class="text-muted mb-4">You haven't placed any orders yet.</p>
-            <asp:HyperLink ID="lnkBrowseMenu" NavigateUrl="~/Menu.aspx" runat="server" CssClass="btn btn-primary">
+            <asp:HyperLink ID="lnkBrowseMenu" NavigateUrl="~/ProductListing.aspx" runat="server" CssClass="btn btn-primary">
                 Browse Menu
             </asp:HyperLink>
         </asp:Panel>
@@ -326,12 +326,12 @@
                                                 <div class="order-item">
                                                     <div class="item-info">
                                                         <div class="item-image">
-                                                            <img src='<%#ResolveUrl(Eval("FoodItemImage").ToString()) %>' 
-                                                                alt='<%# Eval("FoodItemName") %>' 
+                                                            <img src='<%#ResolveUrl(Eval("ProductImage").ToString()) %>' 
+                                                                alt='<%# Eval("ProductImage") %>' 
                                                                 onerror="this.src='<%# ResolveUrl("~/Images/default-food.jpg") %>';" />
                                                         </div>
                                                         <div>
-                                                            <div class="item-name"><%# Eval("FoodItemName") %></div>
+                                                            <div class="item-name"><%# Eval("ProductName") %></div>
                                                             <div class="item-price">
                                                                 $<%# Eval("Price", "{0:0.00}") %>
                                                                 <span class="item-quantity">× <%# Eval("Quantity") %></span>

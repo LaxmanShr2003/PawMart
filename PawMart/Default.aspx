@@ -469,8 +469,8 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1 class="hero-title">Delicious Food Delivered To Your Door</h1>
-            <p class="hero-subtitle">Order your favorite meals from the best restaurants in town. Fast delivery, easy payment, and a wide variety of cuisines to choose from.</p>
+            <h1 class="hero-title">Everything your pet deserves, delivered fast.</h1>
+            <p class="hero-subtitle">Premium food, toys, grooming & accessories for dogs, cats and more. Shop trusted brands, delivered to your door.</p>
             <asp:Button ID="btnOrderNow" runat="server" CssClass="hero-button" Text="Order Now"  />
         </div>
     </section>
@@ -486,17 +486,17 @@
                 <div class="feature-box">
                     <i class="fas fa-truck feature-icon"></i>
                     <h3 class="feature-title">Fast Delivery</h3>
-                    <p class="feature-description">We deliver your food as quickly as possible. Our delivery partners ensure your food arrives hot and fresh.</p>
+                    <p class="feature-description">Get your pet supplies delivered same-day or next-day, right to your doorstep.</p>
                 </div>
                 <div class="feature-box">
                     <i class="fas fa-utensils feature-icon"></i>
-                    <h3 class="feature-title">Quality Food</h3>
-                    <p class="feature-description">We partner with the best restaurants to ensure you receive high-quality, delicious meals every time.</p>
+                    <h3 class="feature-title">Premium Brands</h3>
+                    <p class="feature-description">We stock only vet-approved, trusted brands your pets will love.</p>
                 </div>
                 <div class="feature-box">
                     <i class="fas fa-mobile-alt feature-icon"></i>
                     <h3 class="feature-title">Easy To Order</h3>
-                    <p class="feature-description">Our user-friendly platform makes ordering food quick and easy. Just a few clicks and your food is on its way.</p>
+                    <p class="feature-description">Browse, pick, checkout — done in minutes. Reorder your favorites with one tap.</p>
                 </div>
             </div>
         </div>
@@ -526,7 +526,7 @@
     <!-- Featured Products Section -->
     <section class="products-section">
         <div class="container">
-            <h2 class="section-title">Featured Dishes</h2>
+            <h2 class="section-title">Featured Products</h2>
               <asp:Label ID="lblProductError" runat="server" CssClass="error-message" Visible="false" ForeColor="Red"></asp:Label>
             <div class="products-container">
                 <asp:Repeater ID="rptFeaturedProducts" runat="server">
@@ -562,7 +562,7 @@
             <h2 class="section-title">What Our Customers Say</h2>
             <div class="testimonials-container">
                 <div class="testimonial">
-                    <p class="testimonial-text">"PawMart has changed the way I enjoy food. Their service is exceptional, and the food always arrives hot and fresh. I can't recommend them enough!"</p>
+                    <p class="testimonial-text">"PawMart is my go-to for everything my dog needs. Incredible quality, lightning-fast delivery — my pup has never been happier!"</p>
                     <div class="testimonial-author">John Smith</div>
                     <div class="testimonial-role">Regular Customer</div>
                 </div>
@@ -576,7 +576,7 @@
             <div class="app-container">
                 <div class="app-info">
                     <h2 class="app-title">Download Our Mobile App</h2>
-                    <p class="app-description">Get the full PawMart experience on your mobile device. Order food, track your delivery in real-time, and receive exclusive app-only offers.</p>
+                    <p class="app-description">Get the full PawMart experience on your mobile device. Order pet products, track your delivery in real-time, and receive exclusive app-only offers.</p>
                     <div class="app-buttons">
                         <a href="#" class="app-button">
                             <i class="fab fa-google-play"></i>

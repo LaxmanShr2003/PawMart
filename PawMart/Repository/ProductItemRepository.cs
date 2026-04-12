@@ -17,7 +17,7 @@ namespace PawMart.Repository
 
             public ProductRepository()
             {
-                connectionString = ConfigurationManager.ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["PawMartConnectionString"].ConnectionString;
             }
 
             // Get all food items
@@ -115,7 +115,7 @@ namespace PawMart.Repository
                             {
                                 Product = new Product
                                 {
-                                    ProductItemID = Convert.ToInt32(reader["ProductID"]),
+                                    ProductItemID = Convert.ToInt32(reader["ProductItemID"]),
                                     Name = reader["Name"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     Price = Convert.ToDecimal(reader["Price"]),

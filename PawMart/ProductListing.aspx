@@ -383,11 +383,11 @@
                                     "<span class='price-current'>$" + Eval("Price", "{0:0.00}") + "</span>" %>
                             </div>
                             
-                            <asp:LinkButton ID="btnViewDetails" runat="server" CssClass="btn btn-primary" CommandName="ViewDetails" CommandArgument='<%# Eval("FoodItemID") %>'>
+                            <asp:LinkButton ID="btnViewDetails" runat="server" CssClass="btn btn-primary" CommandName="ViewDetails" CommandArgument='<%# Eval("ProductItemID") %>'>
                                 View Details
                             </asp:LinkButton>
                             
-                            <asp:LinkButton ID="btnAddToCart" runat="server" CssClass="btn btn-outline" CommandName="AddToCart" CommandArgument='<%# Eval("FoodItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
+                            <asp:LinkButton ID="btnAddToCart" runat="server" CssClass="btn btn-outline" CommandName="AddToCart" CommandArgument='<%# Eval("ProductItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
                                 Add to Cart
                             </asp:LinkButton>
                         </div>
@@ -418,11 +418,11 @@
                             </div>
                             
                             <div class="list-product-actions">
-                                <asp:LinkButton ID="btnViewDetailsMobile" runat="server" CssClass="btn btn-primary list-btn" CommandName="ViewDetails" CommandArgument='<%# Eval("FoodItemID") %>'>
+                                <asp:LinkButton ID="btnViewDetailsMobile" runat="server" CssClass="btn btn-primary list-btn" CommandName="ViewDetails" CommandArgument='<%# Eval("ProductItemID") %>'>
                                     View
                                 </asp:LinkButton>
                                 
-                                <asp:LinkButton ID="btnAddToCartMobile" runat="server" CssClass="btn btn-outline list-btn" CommandName="AddToCart" CommandArgument='<%# Eval("FoodItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
+                                <asp:LinkButton ID="btnAddToCartMobile" runat="server" CssClass="btn btn-outline list-btn" CommandName="AddToCart" CommandArgument='<%# Eval("ProductItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
                                     Add
                                 </asp:LinkButton>
                             </div>
@@ -464,12 +464,12 @@
                                 "<span class='price-current'>$" + Eval("Price", "{0:0.00}") + "</span>" %>
                         </div>
                         
-                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" CommandName="ViewDetails" CommandArgument='<%# Eval("FoodItemID") %>'>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" CommandName="ViewDetails" CommandArgument='<%# Eval("ProductItemID") %>'>
                             View Details
                         </asp:LinkButton>
                         
                         <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-outline" CommandName="AddToCart"
-                            CommandArgument='<%# Eval("FoodItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
+                            CommandArgument='<%# Eval("ProductItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
                             Add to Cart
                         </asp:LinkButton>
                     </div>
@@ -500,11 +500,11 @@
                         </div>
                         
                         <div class="list-product-actions">
-                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="btn btn-primary list-btn" CommandName="ViewDetails" CommandArgument='<%# Eval("FoodItemID") %>'>
+                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="btn btn-primary list-btn" CommandName="ViewDetails" CommandArgument='<%# Eval("ProductItemID") %>'>
                                 View
                             </asp:LinkButton>
                             
-                            <asp:LinkButton ID="LinkButton4" runat="server" CssClass="btn btn-outline list-btn" CommandName="AddToCart" CommandArgument='<%# Eval("FoodItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
+                            <asp:LinkButton ID="LinkButton4" runat="server" CssClass="btn btn-outline list-btn" CommandName="AddToCart" CommandArgument='<%# Eval("ProductItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
                                 Add
                             </asp:LinkButton>
                         </div>

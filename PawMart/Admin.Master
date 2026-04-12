@@ -310,7 +310,7 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="CategoryDash.aspx">Categories</a></li>
-                        <li><a href="FoodItemDash.aspx">Food Items</a></li>
+                        <li><a href="ProductItemDash.aspx">Food Items</a></li>
                        
                     </ul>
                 </li>

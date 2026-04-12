@@ -16,7 +16,7 @@ namespace PawMart.Repository
         public UserRepository()
         {
             connectionString = ConfigurationManager
-                .ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
+                .ConnectionStrings["PawMartConnectionString"].ConnectionString;
         }
 
         public List<User> GetAllUsers()

@@ -17,7 +17,7 @@ namespace PawMart.Repository
         public CategoryRepository()
         {
 
-            connectionString = ConfigurationManager.ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["PawMartConnectionString"].ConnectionString;
 
         }
 

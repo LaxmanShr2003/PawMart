@@ -15,7 +15,7 @@ namespace PawMart.Repositories
 
         public CartRepository()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["PawMartConnectionString"].ConnectionString;
         }
 
         public Cart CreateCart(int userID)

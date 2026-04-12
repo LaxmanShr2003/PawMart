@@ -241,7 +241,7 @@
 
     <!-- Food Item Table -->
     <div class="food-item-table-container">
-        <asp:GridView ID="gvFoodItems" runat="server" CssClass="food-item-table" AutoGenerateColumns="false"
+        <asp:GridView ID="gvProductItems" runat="server" CssClass="food-item-table" AutoGenerateColumns="false"
             OnRowCommand="gvProductItems_RowCommand" DataKeyNames="ProductItemID">
             <Columns>
                 <asp:BoundField DataField="ProductItemID" HeaderText="ID" />

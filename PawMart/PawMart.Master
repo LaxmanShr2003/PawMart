@@ -69,7 +69,7 @@
 }
 
 .logo-img {
-    height: 70px;   /* adjust size */
+    height: 60px;   /* adjust size */
     width: auto;
 }
 
@@ -454,13 +454,13 @@
             <div class="container">
                 <div class="nav-content">
                     <a href="#" class="logo">
-    <img src="images/PawMartLogo.png" alt="PawMart Logo" class="logo-img">
-    Mart
+    <img src="images/PawMartLogo-4.png" alt="PawMart Logo" class="logo-img">
+    
 </a>
                     <div class="menu-container">
                         <ul class="menu">
                             <li><a href="Default.aspx" class="active">Home</a></li>
-                            <li><a href="FoodListing.aspx">Menu</a></li>
+                            <li><a href="ProductListing.aspx">Menu</a></li>
                             <li><a href="AboutUs.aspx">About Us</a></li>
                             <li><a href="Contact.aspx">Contact</a></li>
                         </ul>
@@ -489,7 +489,7 @@
     <% } else { %>
         <div class="user-profile">
             <div class="greeting">Hi, <%= Session["UserName"] %>!</div>
-            <a href="FoodCart.aspx"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="ProductCart.aspx"><i class="fas fa-shopping-cart"></i> Cart</a>
             <a href="MyOrder.aspx"><i class="fas fa-shopping-cart"></i> My Orders</a>
              <a href="ManageProfile.aspx"><i class="fas fa-shopping-cart"></i>Profile</a>
 

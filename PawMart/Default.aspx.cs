@@ -43,7 +43,7 @@ namespace PawMart
         {
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
+                string connectionString = ConfigurationManager.ConnectionStrings["PawMartConnectionString"].ConnectionString;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -89,7 +89,7 @@ namespace PawMart
 {
     try
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["FoodyLocalDBConnectionString"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["PawMartConnectionString"].ConnectionString;
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {

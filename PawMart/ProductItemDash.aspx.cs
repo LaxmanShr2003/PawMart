@@ -30,8 +30,8 @@ namespace PawMart
         private void LoadFoodItems()
         {
             // Bind the GridView with food items
-            gvFoodItems.DataSource = _productService.GetAllFoodItems();
-            gvFoodItems.DataBind();
+            gvProductItems.DataSource = _productService.GetAllFoodItems();
+            gvProductItems.DataBind();
         }
 
         private void LoadCategories()
@@ -48,7 +48,7 @@ namespace PawMart
             ddlEditCategoryID.DataBind();
         }
 
-        protected void btnAddFoodItem_Click(object sender, EventArgs e)
+        protected void btnAddProductItem_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
@@ -114,7 +114,7 @@ namespace PawMart
             }
         }
 
-        protected void btnUpdateFoodItem_Click(object sender, EventArgs e)
+        protected void btnUpdateProductItem_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
@@ -181,7 +181,7 @@ namespace PawMart
             }
         }
 
-        protected void gvFoodItems_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gvProductItems_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "DeleteFoodItem")
             {

@@ -449,7 +449,7 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <tr>
-                                        <td><%# Eval("FoodItemName") %></td>
+                                        <td><%# Eval("ProductName") %></td>
                                         <td>$<%# Eval("Price", "{0:0.00}") %></td>
                                         <td><%# Eval("Quantity") %></td>
                                         <td>$<%# Eval("Subtotal", "{0:0.00}") %></td>
