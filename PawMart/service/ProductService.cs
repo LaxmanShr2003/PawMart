@@ -4,6 +4,7 @@ using PawMart.Models;
 using PawMart.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PawMart.service
 {
@@ -159,5 +160,20 @@ namespace PawMart.service
                 throw; // Re-throw the exception for the caller to handle
             }
         }
+
+            public List<Product> GetProductsByCategoryId(int categoryId)
+        {
+            try
+            {
+                return _productItemRepository.GetAllProducts()
+                    .Where(p => p.CategoryID == categoryId)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error retrieving products by category: " + ex.Message);
+                throw;
+            }
+        }
     }
-}
+    }

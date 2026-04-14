@@ -258,7 +258,65 @@ namespace PawMart.Repositories
                 throw;
             }
         }
+        public void UpdateCartItemQuantity(int cartItemId, int change)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
 
+                // First get current quantity
+                string selectQuery = "SELECT Quantity FROM CartItem WHERE CartItemID = @CartItemID";
+
+                int currentQty = 0;
+
+                using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
+                    var result = cmd.ExecuteScalar();
+
+                    if (result == null) return;
+
+                    currentQty = Convert.ToInt32(result);
+                }
+
+                int newQty = currentQty + change;
+
+                if (newQty <= 0)
+                {
+                    // delete item if quantity becomes 0
+                    DeleteCartItem(cartItemId);
+                    return;
+                }
+
+                // update quantity
+                string updateQuery = @"
+            UPDATE CartItem
+            SET Quantity = @Quantity
+            WHERE CartItemID = @CartItemID";
+
+                using (SqlCommand cmd = new SqlCommand(updateQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Quantity", newQty);
+                    cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void DeleteCartItem(int cartItemId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "DELETE FROM CartItem WHERE CartItemID = @CartItemID";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@CartItemID", cartItemId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
 
     }

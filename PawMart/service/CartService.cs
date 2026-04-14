@@ -129,5 +129,37 @@ namespace PawMart.Services
                 throw;
             }
         }
+        public List<CartItem> GetCartItemsByUser(int userID)
+        {
+            Cart cart = _cartRepository.GetCartByUserID(userID);
+            if (cart == null) return new List<CartItem>();
+
+            return _cartRepository.GetCartItems(cart.CartID);
+        }
+        public void UpdateQuantity(int cartItemId, int quantity)
+        {
+            try
+            {
+                _cartRepository.UpdateCartItemQuantity(cartItemId, quantity);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating cart item: {ex.Message}");
+                throw;
+            }
+        }
+
+        public void DeleteCartItem(int cartItemId)
+        {
+            try
+            {
+                _cartRepository.DeleteCartItem(cartItemId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleteing cart item: {ex.Message}");
+                throw;
+            }
+        }
     }
 }

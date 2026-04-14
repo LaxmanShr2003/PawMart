@@ -354,67 +354,34 @@ namespace PawMart
                 User currentUser = (User)Session["User"];
                 if (currentUser == null)
                 {
-                    // User is not logged in
-                    ScriptManager.RegisterStartupScript(this, GetType(), "AddToCartError",
-                        "alert('Please log in to add items to your cart.');", true);
                     Response.Redirect("Login.aspx");
-
+                    return;
                 }
 
-                Cart cart = _cartService.EnsureCartExists(currentUser.UserID); // Changed from 'GetCurrentUserId()' to '1' for testing
-                // Get the food item
                 Product item = _productService.GetProductById(productItemId);
 
                 if (item == null || !item.IsAvailable)
                 {
-                    // Item not found or not available
-                    ScriptManager.RegisterStartupScript(this, GetType(), "AddToCartError",
-                        "alert('This item is currently not available.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Error",
+                        "alert('This item is not available.');", true);
                     return;
                 }
 
-                // Get or create shopping cart
-                List<CartItem> cartitem =Session["ShoppingCart"] as List<CartItem> ?? new List<CartItem>();
+                // 👉 STORE ONLY (do NOT add yet)
+                Session["Cart_ProductID"] = productItemId;
+                Session["Cart_Quantity"] = 1; // default quantity
 
+                var master = (PawMart)this.Master;
 
-
-
-                // Check if item already exists in cart
-                CartItem existingItem = cartitem.FirstOrDefault(i => i.ProductItemID == productItemId);
-
-                if (existingItem != null)
-                {
-                    // Increment quantity
-                    existingItem.Quantity++;
-                }
-                else
-                {
-                    // Add new item to cart
-                 
-
-                    _cartService.AddToCart(currentUser.UserID, productItemId);
-                }
-
-                // Save cart to session
-                Session["ShoppingCart"] = cartitem;
-
-                // Update cart item count in UI (if needed)
-                //UpdateCartCount(cartItem.Sum(i => i.Quantity));
-
-                // Show success message
-                ScriptManager.RegisterStartupScript(this, GetType(), "AddToCartSuccess",
-                    "alert('Item added to cart successfully!');", true);
+                // 👉 SHOW CONFIRMATION MODAL
+                master.ShowModal("Confirm", "Add this item to cart?", "CONFIRM_ADD_TO_CART");
             }
             catch (Exception ex)
             {
-                // Log error
-                System.Diagnostics.Debug.WriteLine("Error adding item to cart: " + ex.Message);
-
-                // Show error message
-                ScriptManager.RegisterStartupScript(this, GetType(), "AddToCartError",
-                    "alert('Failed to add item to cart. Please try again.');", true);
+                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
         }
+    }
 
         //private void UpdateCartCount(int count)
         //{
@@ -426,4 +393,3 @@ namespace PawMart
 
       
     }
-}

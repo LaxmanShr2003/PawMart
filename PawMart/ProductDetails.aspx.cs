@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 
 namespace PawMart
 {
@@ -71,7 +72,7 @@ namespace PawMart
                 PopulateFoodDetails(_currentProduct);
 
                 //// Load related foods
-                //LoadRelatedFoods(_currentFoodItem.CategoryID, foodItemId);
+                LoadRelatedFoods(_currentProduct.CategoryID, foodItemId);
             }
             catch (Exception ex)
             {
@@ -150,56 +151,35 @@ namespace PawMart
                 productCategory.InnerText = "Uncategorized";
             }
 
-            // Set serves (this could be added as a property to your FoodItem if needed)
-            foodServes.InnerText = "1 Person";
+           
         }
 
-        //private void LoadRelatedFoods(int categoryId, int currentFoodId)
-        //{
-        //    try
-        //    {
-        //        // Get foods from the same category
-        //        List<FoodItem> categoryFoods = _foodItemService.GetFoodItemByCategoryId(categoryId)
-        //            .Where(f => f.FoodItemID != currentFoodId) // Exclude current food
-        //            .ToList();
+        private void LoadRelatedFoods(int categoryId, int currentProductId)
+        {
+            try
+            {
+                List<Product> related = _productService.GetProductsByCategoryId(categoryId)
+                    .Where(p => p.ProductItemID != currentProductId)
+                    .Take(RelatedFoodsCount)
+                    .ToList();
 
-        //        // If not enough items in the same category, add some random items
-        //        if (categoryFoods.Count < RelatedFoodsCount)
-        //        {
-        //            List<FoodItem> otherFoods = _foodItemService.GetAllFoodItems()
-        //                .Where(f => f.CategoryID != categoryId && f.FoodItemID != currentFoodId)
-        //                .OrderBy(f => Guid.NewGuid()) // Random order
-        //                .Take(RelatedFoodsCount - categoryFoods.Count)
-        //                .ToList();
-
-        //            categoryFoods.AddRange(otherFoods);
-        //        }
-
-        //        // Take only the required number of items
-        //        List<FoodItem> relatedFoods = categoryFoods
-        //            .OrderBy(f => Guid.NewGuid()) // Random order
-        //            .Take(RelatedFoodsCount)
-        //            .ToList();
-
-        //        // Bind to repeater
-        //        if (relatedFoods.Count > 0)
-        //        {
-        //            rptRelatedFoods.DataSource = relatedFoods;
-        //            rptRelatedFoods.DataBind();
-        //            pnlRelatedFoods.Visible = true;
-        //        }
-        //        else
-        //        {
-        //            pnlRelatedFoods.Visible = false;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log error
-        //        System.Diagnostics.Debug.WriteLine("Error loading related foods: " + ex.Message);
-        //        pnlRelatedFoods.Visible = false;
-        //    }
-        //}
+                if (related.Any())
+                {
+                    rptRelatedFoods.DataSource = related;
+                    rptRelatedFoods.DataBind();
+                    pnlRelatedFoods.Visible = true;
+                }
+                else
+                {
+                    pnlRelatedFoods.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Related products error: " + ex.Message);
+                pnlRelatedFoods.Visible = false;
+            }
+        }
 
         private void ShowErrorPanel()
         {
@@ -253,16 +233,21 @@ namespace PawMart
                 int productItemId = int.Parse(Request.QueryString["id"]);
 
                 // Add to cart
-                _cartService.AddToCart(currentUser.UserID, productItemId, quantity);
+                var master = (PawMart)this.Master;
 
-                // Show success message
-                ShowMessage("Item added to your cart successfully!");
+                // Store data temporarily (Session or ViewState)
+                Session["Cart_ProductID"] = productItemId;
+                Session["Cart_Quantity"] = quantity;
+
+                master.ShowModal("Confirm", "Add this item to cart?", "CONFIRM_ADD_TO_CART");
             }
             catch (Exception ex)
             {
                 // Log error
                 System.Diagnostics.Debug.WriteLine("Error adding to cart: " + ex.Message);
-                ShowMessage("Failed to add item to cart. Please try again.");
+               
+                var master = (PawMart)this.Master;
+                master.ShowModal("Failed", "Failed to add item to cart.Please try again!");
             }
         }
 
@@ -305,13 +290,21 @@ namespace PawMart
                         _cartService.AddToCart(currentUser.UserID, productItemId);
 
                         // Show success message
-                        ShowMessage("Item added to your cart successfully!");
+                        var master = (PawMart)this.Master;
+
+                        // Store data temporarily (Session or ViewState)
+                        Session["Cart_ProductID"] = productItemId;
+                        Session["Cart_Quantity"] = 1;
+
+                        master.ShowModal("Confirm", "Add this item to cart?", "CONFIRM_ADD_TO_CART");
                     }
                     catch (Exception ex)
                     {
                         // Log error
                         System.Diagnostics.Debug.WriteLine("Error adding related item to cart: " + ex.Message);
-                        ShowMessage("Failed to add item to cart. Please try again.");
+                      
+                        var master = (PawMart)this.Master;
+                        master.ShowModal("Failed", "Failed to add item to cart.Please try again!");
                     }
                     break;
             }

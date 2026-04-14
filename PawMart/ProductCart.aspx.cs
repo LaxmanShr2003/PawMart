@@ -65,32 +65,28 @@ namespace PawMart
         protected void rptCartItems_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int cartItemId = Convert.ToInt32(e.CommandArgument);
-           
-            List<CartItem> cartItems = _cartService.GetCartItemsService(cartItemId);  // Changed from 'userID' to '1' for testing
-
-            if (cartItems == null) return;
 
             switch (e.CommandName)
             {
                 case "DecreaseQuantity":
-                    DecreaseItemQuantity(cartItems, cartItemId);
+                    _cartService.UpdateQuantity(cartItemId, -1);
                     break;
+
                 case "IncreaseQuantity":
-                    IncreaseItemQuantity(cartItems, cartItemId);
+                    _cartService.UpdateQuantity(cartItemId, +1);
                     break;
+
                 case "RemoveItem":
-                    RemoveCartItem(cartItems, cartItemId);
+                    _cartService.DeleteCartItem(cartItemId);
                     break;
             }
 
-            // Save back to session
-            Session["ShoppingCart"] = cartItems;
             LoadCartItems();
         }
 
         private void DecreaseItemQuantity(List<CartItem> cartItems, int cartItemId)
         {
-            var item = cartItems.Find(i => i.ProductItemID == cartItemId);
+            var item = cartItems.Find(i => i.CartItemID == cartItemId);
             if (item != null)
             {
                 if (item.Quantity > 1)

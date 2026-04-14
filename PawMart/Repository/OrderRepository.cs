@@ -10,7 +10,7 @@ namespace PawMart.Repository
 {
     public class OrderRepository
     {
-        private string  connectionString;
+        private string connectionString;
 
         public OrderRepository()
         {
@@ -759,12 +759,46 @@ namespace PawMart.Repository
 
                     orderStatus.StatusUpdates = statusUpdates;
 
-                
+
                 }
             }
 
             return orderStatus;
         }
+    
+
+    public bool HasUserPurchasedProduct(int userId, int productItemId, int orderId)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = @"
+                SELECT COUNT(*) 
+                FROM OrderItems oi
+                INNER JOIN [Orders] o ON oi.OrderID = o.OrderID
+                WHERE o.UserID = @UserID
+                AND oi.ProductItemID = @ProductItemID
+                AND o.OrderID = @OrderID";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@UserID", userId);
+                    command.Parameters.AddWithValue("@ProductItemID", productItemId);
+                    command.Parameters.AddWithValue("@OrderID", orderId);
+
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking purchase: " + ex.Message);
+                throw;
+            }
+        }
     }
-}
+};
+
 

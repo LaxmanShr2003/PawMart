@@ -314,6 +314,12 @@
                        
                     </ul>
                 </li>
+                 <li class="active">
+    <a href="ReviewDash.aspx">
+        <i class="fas fa-tachometer-alt"></i>
+        Product Reviews
+    </a>
+</li>
              
            
                 <li>

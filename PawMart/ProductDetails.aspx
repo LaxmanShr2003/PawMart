@@ -430,10 +430,7 @@
                             <span class="meta-label">Category:</span>
                             <span class="meta-value" id="productCategory" runat="server"></span>
                         </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Serves:</span>
-                            <span class="meta-value" id="foodServes" runat="server">1 Person</span>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -472,11 +469,11 @@
                                 </div>
                                 
                                 <div class="product-action">
-                                    <asp:LinkButton ID="btnViewDetails" runat="server" CssClass="btn btn-primary small-btn" CommandName="ViewDetails" CommandArgument='<%# Eval("FoodItemID") %>'>
+                                    <asp:LinkButton ID="btnViewDetails" runat="server" CssClass="btn btn-primary small-btn" CommandName="ViewDetails" CommandArgument='<%# Eval("ProductItemID") %>'>
                                         View
                                     </asp:LinkButton>
                                     
-                                    <asp:LinkButton ID="btnAddToCart" runat="server" CssClass="btn btn-outline small-btn" CommandName="AddToCart" CommandArgument='<%# Eval("FoodItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
+                                    <asp:LinkButton ID="btnAddToCart" runat="server" CssClass="btn btn-outline small-btn" CommandName="AddToCart" CommandArgument='<%# Eval("ProductItemID") %>' Visible='<%# Convert.ToBoolean(Eval("IsAvailable")) %>'>
                                         Add
                                     </asp:LinkButton>
                                 </div>

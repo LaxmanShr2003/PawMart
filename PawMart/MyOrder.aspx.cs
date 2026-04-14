@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PawMart.Services;
 using PawMart.Models;
+using PawMart.Service;
 
 namespace PawMart
 {
@@ -130,9 +131,14 @@ namespace PawMart
                 int orderId = Convert.ToInt32(e.CommandArgument);
                 Response.Redirect($"OrderStatus.aspx?OrderID={orderId}");
             }
-            else if (e.CommandName == "ViewDetails")
+            if (e.CommandName == "Review")
             {
-                // Handle view details logic if needed
+                string[] ids = e.CommandArgument.ToString().Split(',');
+
+                int productId = Convert.ToInt32(ids[0]);
+                int orderId = Convert.ToInt32(ids[1]);
+
+                Response.Redirect($"Review.aspx?productId={productId}&orderId={orderId}");
             }
         }
 
@@ -169,6 +175,30 @@ namespace PawMart
                 return "Images/FoodItems/" + imagePath.ToString();
             }
             return "Images/default-food.jpg";
+        }
+        protected void rptOrderItems_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Review")
+            {
+                string[] ids = e.CommandArgument.ToString().Split(',');
+
+                int productId = Convert.ToInt32(ids[0]);
+                int orderId = Convert.ToInt32(ids[1]);
+
+                try
+                {
+                    // optional: pre-check (better UX)
+                    var reviewService = new ProductReviewService();
+
+                    // If you don't have this method, skip and rely on catch below
+                    Response.Redirect($"Review.aspx?ProductID={productId}&OrderID={orderId}");
+                }
+                catch (Exception ex)
+                {
+                    pnlMessage.Visible = true;
+                    lblMessage.Text = "⚠️ You have already reviewed this product for this order.";
+                }
+            }
         }
     }
 }

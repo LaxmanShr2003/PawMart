@@ -1,367 +1,346 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PawMart.Master" AutoEventWireup="true" CodeBehind="MyOrder.aspx.cs" Inherits="PawMart.MyOrders" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        /* Simplified Card Styling */
-        .order-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .order-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .order-card .card-header {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .order-card .card-body {
-            padding: 20px;
-        }
-        
-        .order-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .order-summary-item {
-            padding: 10px;
-        }
-        
-        .order-summary-label {
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-bottom: 5px;
-        }
-        
-        .order-summary-value {
-            font-weight: 500;
-        }
-        
-        /* Status Badges */
-        .status-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .badge-pending { background-color: #FFF3CD; color: #856404; }
-        .badge-processing { background-color: #D1ECF1; color: #0C5460; }
-        .badge-delivery { background-color: #F8D7DA; color: #721C24; }
-        .badge-delivered { background-color: #D4EDDA; color: #155724; }
-        .badge-cancelled { background-color: #E2E3E5; color: #383D41; }
-        
-        /* Action Buttons */
-        .order-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .btn-action {
-            flex: 1;
-            padding: 8px 15px;
-            border-radius: 6px;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .btn-details {
-            background-color: #f8f9fa;
-            color: #495057;
-            border: 1px solid #dee2e6;
-        }
-        
-        .btn-details:hover {
-            background-color: #e9ecef;
-        }
-        
-        .btn-track {
-            background-color: #0d6efd;
-            color: white;
-            border: 1px solid #0d6efd;
-        }
-        
-        .btn-track:hover {
-            background-color: #0b5ed7;
-        }
-        
-        /* Modal Styling */
-        .modal-order-items {
-            max-height: 400px;
-            overflow-y: auto;
-            margin: 20px 0;
-        }
-        
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #f1f1f1;
-        }
-        
-        .order-item:last-child {
-            border-bottom: none;
-        }
-        
-        .item-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .item-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .item-name {
-            font-weight: 500;
-        }
-        
-        .item-price {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .item-quantity {
-            background-color: #f8f9fa;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-left: 5px;
-        }
-        
-        .item-total {
-            font-weight: 600;
-        }
-        
-        /* Empty State */
-        .empty-orders {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .empty-orders i {
-            font-size: 48px;
-            color: #adb5bd;
-            margin-bottom: 15px;
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .order-summary {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .order-actions {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .order-card .card-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
-            .order-summary {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<style>
+.order-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color .15s;
+}
+.order-card:hover { border-color: #ccc; }
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.order-id { font-size: 14px; font-weight: 600; }
+.order-date { font-size: 12px; color: #888; margin-top: 2px; }
+
+.meta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.meta-item { display: flex; flex-direction: column; gap: 2px; }
+.meta-label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: .04em; }
+.meta-value { font-size: 13px; font-weight: 500; }
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+}
+.badge-pending    { background: #FFF3CD; color: #856404; }
+.badge-processing { background: #D1ECF1; color: #0C5460; }
+.badge-delivery   { background: #CCE5FF; color: #004085; }
+.badge-delivered  { background: #D4EDDA; color: #155724; }
+.badge-cancelled  { background: #E2E3E5; color: #383D41; }
+
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+.btn-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    background: #e8f0fe;
+    color: #1a56db;
+    border: 1px solid #c7d7fc;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity .15s;
+}
+.btn-track:hover { opacity: .85; }
+
+.btn-expand {
+    background: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    color: #888;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 10px;
+    line-height: 1;
+    transition: background .1s;
+}
+.btn-expand:hover { background: #f5f5f5; }
+
+/* Expandable detail panel */
+.card-detail { border-top: 1px solid #f0f0f0; display: none; }
+.card-detail.open { display: block; }
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #f0f0f0;
+}
+.detail-section { padding: 16px 18px; }
+.detail-section:first-child { border-right: 1px solid #f0f0f0; }
+.detail-section h3 {
+    font-size: 11px;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 10px;
+}
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+.detail-row span:first-child { color: #888; }
+
+.items-section { padding: 16px 18px; }
+.items-section h3 {
+    font-size: 11px;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 10px;
+}
+.item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+.item-row:last-child { border-bottom: none; }
+.item-img {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.item-img img { width: 100%; height: 100%; object-fit: cover; }
+.item-name { font-size: 13px; font-weight: 500; }
+.item-qty { font-size: 12px; color: #888; }
+.item-sub { font-size: 13px; font-weight: 600; margin-left: auto; }
+
+.total-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    background: #f8f9fa;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.empty-orders {
+    text-align: center;
+    padding: 48px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    color: #888;
+}
+.empty-orders i { font-size: 40px; display: block; margin-bottom: 12px; }
+.review-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid #ff6b6b;
+    color: #ff6b6b;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: 0.2s ease;
+    margin-left: 8px;
+    text-decoration: none;
+}
+
+.review-btn:hover {
+    background: #ff6b6b;
+    color: white;
+}
+
+@media (max-width: 640px) {
+    .detail-grid { grid-template-columns: 1fr; }
+    .detail-section:first-child { border-right: none; border-bottom: 1px solid #f0f0f0; }
+    .card-top { flex-direction: column; align-items: flex-start; }
+    .card-actions { margin-left: 0; }
+}
+</style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">My Orders</h2>
-            
-            <div class="d-flex gap-3">
-                <asp:DropDownList ID="ddlStatusFilter" runat="server" CssClass="form-select form-select-sm" 
-                    AutoPostBack="true" OnSelectedIndexChanged="ddlStatusFilter_SelectedIndexChanged">
-                    <asp:ListItem Text="All Orders" Value="" Selected="True" />
-                    <asp:ListItem Text="Pending" Value="Pending" />
-                    <asp:ListItem Text="Processing" Value="Processing" />
-                    <asp:ListItem Text="Out for Delivery" Value="Delivery" />
-                    <asp:ListItem Text="Delivered" Value="Delivered" />
-                    <asp:ListItem Text="Cancelled" Value="Cancelled" />
-                </asp:DropDownList>
-                
-                <asp:DropDownList ID="ddlSortBy" runat="server" CssClass="form-select form-select-sm" 
-                    AutoPostBack="true" OnSelectedIndexChanged="ddlSortBy_SelectedIndexChanged">
-                    <asp:ListItem Text="Newest First" Value="DateDesc" Selected="True" />
-                    <asp:ListItem Text="Oldest First" Value="DateAsc" />
-                    <asp:ListItem Text="Amount (High to Low)" Value="AmountDesc" />
-                    <asp:ListItem Text="Amount (Low to High)" Value="AmountAsc" />
-                </asp:DropDownList>
-            </div>
-        </div>
-        
-        <!-- No Orders Message -->
-        <asp:Panel ID="pnlNoOrders" runat="server" CssClass="empty-orders" Visible="false">
-            <i class="fa fa-receipt"></i>
-            <h4 class="mb-3">No orders found</h4>
-            <p class="text-muted mb-4">You haven't placed any orders yet.</p>
-            <asp:HyperLink ID="lnkBrowseMenu" NavigateUrl="~/ProductListing.aspx" runat="server" CssClass="btn btn-primary">
-                Browse Menu
-            </asp:HyperLink>
-        </asp:Panel>
-        
-        <div class="row">
-            <asp:Repeater ID="rptOrders" runat="server" OnItemCommand="rptOrders_ItemCommand">
-                <ItemTemplate>
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="order-card">
-                            <div class="card-header">
-                                <span class="fw-bold">Order #<%# Eval("OrderID") %></span>
-                                <span class="text-muted"><%# GetFormattedDate(Eval("OrderDate")) %></span>
-                            </div>
-                            
-                            <div class="card-body">
-                                <div class="order-summary">
-                                    <div class="order-summary-item">
-                                        <div class="order-summary-label">Status</div>
-                                        <div>
-                                            <span class='status-badge badge-<%# GetStatusClass(Eval("OrderStatus").ToString()) %>'>
-                                                <%# GetFormattedStatus(Eval("OrderStatus").ToString()) %>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="order-summary-item">
-                                        <div class="order-summary-label">Total</div>
-                                        <div class="order-summary-value">$<%# Eval("TotalAmount", "{0:0.00}") %></div>
-                                    </div>
-                                    
-                                    <div class="order-summary-item">
-                                        <div class="order-summary-label">Payment</div>
-                                        <div><%# Eval("PaymentMethod") %></div>
-                                    </div>
-                                    
-                                    <div class="order-summary-item">
-                                        <div class="order-summary-label">Items</div>
-                                        <div><%# GetItemCount(Eval("OrderID")) %></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="order-actions">
-                                    <button type="button" class="btn-action btn-details" data-bs-toggle="modal" 
-                                        data-bs-target="#orderModal<%# Eval("OrderID") %>">
-                                        <i class="fa fa-list"></i> Details
-                                    </button>
-                                    
-                                    <asp:LinkButton ID="btnTrack" runat="server" CssClass="btn-action btn-track" 
-                                        CommandName="Track" CommandArgument='<%# Eval("OrderID") %>'>
-                                        <i class="fa fa-truck"></i> Track
-                                    </asp:LinkButton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Order Details Modal -->
-                    <div class="modal fade" id="orderModal<%# Eval("OrderID") %>" tabindex="-1" 
-                        aria-labelledby="orderModalLabel<%# Eval("OrderID") %>" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Order #<%# Eval("OrderID") %></h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                
-                                <div class="modal-body">
-                                    <div class="row mb-4">
-                                        <div class="col-md-6">
-                                            <h6>Order Information</h6>
-                                            <div class="mb-2"><strong>Date:</strong> <%# GetFormattedDate(Eval("OrderDate")) %></div>
-                                            <div class="mb-2">
-                                                <strong>Status:</strong> 
-                                                <span class='status-badge badge-<%# GetStatusClass(Eval("OrderStatus").ToString()) %>'>
-                                                    <%# GetFormattedStatus(Eval("OrderStatus").ToString()) %>
-                                                </span>
-                                            </div>
-                                            <div class="mb-2"><strong>Payment:</strong> <%# Eval("PaymentMethod") %> (<%# Eval("PaymentStatus") %>)</div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
-                                            <h6>Delivery Information</h6>
-                                            <div class="mb-2"><strong>Address:</strong> <%# Eval("DeliveryAddress") %></div>
-                                            <div class="mb-2"><strong>Contact:</strong> <%# Eval("ContactPhone") %></div>
-                                            <div class="mb-2"><strong>Notes:</strong> <%# String.IsNullOrEmpty(Eval("Notes").ToString()) ? "None" : Eval("Notes") %></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <h6 class="mb-3">Order Items</h6>
-                                    <div class="modal-order-items">
-                                        <asp:Repeater ID="rptOrderItems" runat="server">
-                                            <ItemTemplate>
-                                                <div class="order-item">
-                                                    <div class="item-info">
-                                                        <div class="item-image">
-                                                            <img src='<%#ResolveUrl(Eval("ProductImage").ToString()) %>' 
-                                                                alt='<%# Eval("ProductImage") %>' 
-                                                                onerror="this.src='<%# ResolveUrl("~/Images/default-food.jpg") %>';" />
-                                                        </div>
-                                                        <div>
-                                                            <div class="item-name"><%# Eval("ProductName") %></div>
-                                                            <div class="item-price">
-                                                                $<%# Eval("Price", "{0:0.00}") %>
-                                                                <span class="item-quantity">× <%# Eval("Quantity") %></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-total">$<%# Eval("Subtotal", "{0:0.00}") %></div>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </div>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                                        <h6 class="mb-0">Total Amount</h6>
-                                        <h5 class="mb-0 text-primary">$<%# Eval("TotalAmount", "{0:0.00}") %></h5>
-                                    </div>
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                    <asp:LinkButton ID="btnTrackModal" runat="server" CssClass="btn btn-primary" 
-                                        CommandName="Track" CommandArgument='<%# Eval("OrderID") %>'>
-                                        <i class="fa fa-truck me-2"></i>Track Order
-                                    </asp:LinkButton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+    <asp:Panel ID="pnlMessage" runat="server" Visible="false" CssClass="alert alert-danger">
+    <asp:Label ID="lblMessage" runat="server"></asp:Label>
+</asp:Panel>
+<div class="container py-4" style="max-width:860px">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <h2 class="mb-0" style="font-size:20px;font-weight:500">My orders</h2>
+        <div class="d-flex gap-2 flex-wrap">
+            <asp:DropDownList ID="ddlStatusFilter" runat="server" CssClass="form-select form-select-sm"
+                AutoPostBack="true" OnSelectedIndexChanged="ddlStatusFilter_SelectedIndexChanged">
+                <asp:ListItem Text="All orders" Value="" Selected="True" />
+                <asp:ListItem Text="Pending" Value="Pending" />
+                <asp:ListItem Text="Processing" Value="Processing" />
+                <asp:ListItem Text="Out for delivery" Value="Delivery" />
+                <asp:ListItem Text="Delivered" Value="Delivered" />
+                <asp:ListItem Text="Cancelled" Value="Cancelled" />
+            </asp:DropDownList>
+            <asp:DropDownList ID="ddlSortBy" runat="server" CssClass="form-select form-select-sm"
+                AutoPostBack="true" OnSelectedIndexChanged="ddlSortBy_SelectedIndexChanged">
+                <asp:ListItem Text="Newest first" Value="DateDesc" Selected="True" />
+                <asp:ListItem Text="Oldest first" Value="DateAsc" />
+                <asp:ListItem Text="Amount (high to low)" Value="AmountDesc" />
+                <asp:ListItem Text="Amount (low to high)" Value="AmountAsc" />
+            </asp:DropDownList>
         </div>
     </div>
+
+    <asp:Panel ID="pnlNoOrders" runat="server" CssClass="empty-orders" Visible="false">
+        <i class="fa fa-box-open"></i>
+        <h5 class="mb-2">No orders found</h5>
+        <p class="mb-3 text-muted" style="font-size:13px">You haven't placed any orders yet.</p>
+        <asp:HyperLink ID="lnkBrowseMenu" NavigateUrl="~/ProductListing.aspx" runat="server"
+            CssClass="btn btn-primary btn-sm">Browse products</asp:HyperLink>
+    </asp:Panel>
+
+    <asp:Repeater ID="rptOrders" runat="server" OnItemCommand="rptOrders_ItemCommand">
+        <ItemTemplate>
+            <div class="order-card">
+
+                <%-- Top row: ID + date | meta | actions --%>
+                <div class="card-top">
+                    <div>
+                        <div class="order-id">Order #<%# Eval("OrderID") %></div>
+                        <div class="order-date"><%# GetFormattedDate(Eval("OrderDate")) %></div>
+                    </div>
+
+                    <div class="meta-row">
+                        <div class="meta-item">
+                            <span class="meta-label">Status</span>
+                            <span class='status-badge badge-<%# GetStatusClass(Eval("OrderStatus").ToString()) %>'>
+                                <%# GetFormattedStatus(Eval("OrderStatus").ToString()) %>
+                            </span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Total</span>
+                            <span class="meta-value">$<%# Eval("TotalAmount", "{0:0.00}") %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Items</span>
+                            <span class="meta-value"><%# GetItemCount(Eval("OrderID")) %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Payment</span>
+                            <span class="meta-value"><%# Eval("PaymentMethod") %></span>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <asp:LinkButton ID="btnTrack" runat="server" CssClass="btn-track"
+                            CommandName="Track" CommandArgument='<%# Eval("OrderID") %>'>
+                            <i class="fa fa-truck"></i> Track
+                        </asp:LinkButton>
+                        <button type="button" class="btn-expand"
+                            onclick="toggleDetail('detail-<%# Eval("OrderID") %>', this)"
+                            aria-expanded="false">&#9662;</button>
+                    </div>
+                </div>
+
+                <%-- Expandable detail panel (no modal, no duplicate buttons) --%>
+                <div class="card-detail" id="detail-<%# Eval("OrderID") %>">
+
+                    <div class="detail-grid">
+                        <div class="detail-section">
+                            <h3>Order info</h3>
+                            <div class="detail-row">
+                                <span>Payment method</span>
+                                <span><%# Eval("PaymentMethod") %></span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Payment status</span>
+                                <span><%# Eval("PaymentStatus") %></span>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <h3>Delivery info</h3>
+                            <div class="detail-row">
+                                <span>Address</span>
+                                <span><%# Eval("DeliveryAddress") %></span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Contact</span>
+                                <span><%# Eval("ContactPhone") %></span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Notes</span>
+                                <span><%# String.IsNullOrEmpty(Eval("Notes").ToString()) ? "—" : Eval("Notes") %></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="items-section">
+                        <h3>Items</h3>
+                        <asp:Repeater ID="rptOrderItems" runat="server" OnItemCommand="rptOrderItems_ItemCommand">
+                            <ItemTemplate>
+                                <div class="item-row">
+                                    <div class="item-img">
+                                        <img src='<%# ResolveUrl(Eval("ProductImage").ToString()) %>'
+                                             alt='<%# Eval("ProductName") %>'
+                                             onerror="this.src='<%# ResolveUrl("~/Images/default-food.jpg") %>';" />
+                                    </div>
+                                    <div>
+                                        <div class="item-name"><%# Eval("ProductName") %></div>
+                                        <div class="item-qty">$<%# Eval("Price", "{0:0.00}") %> × <%# Eval("Quantity") %></div>
+                                    </div>
+                                    <div class="item-sub">$<%# Eval("Subtotal", "{0:0.00}") %></div>
+                                  <asp:LinkButton 
+    ID="btnReview" 
+    runat="server"
+    CssClass="review-btn"
+    CommandName="Review"
+    CommandArgument='<%# Eval("ProductItemID") + "," + Eval("OrderID") %>'>
+    Review
+</asp:LinkButton>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+
+                    <div class="total-bar">
+                        <span>Total</span>
+                        <span>$<%# Eval("TotalAmount", "{0:0.00}") %></span>
+                    </div>
+                </div>
+
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+
+</div>
+
+<script>
+function toggleDetail(id, btn) {
+    var panel = document.getElementById(id);
+    var open = panel.classList.toggle('open');
+    btn.innerHTML = open ? '&#9652;' : '&#9662;';
+    btn.setAttribute('aria-expanded', open);
+}
+</script>
 </asp:Content>

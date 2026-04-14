@@ -254,5 +254,15 @@ namespace PawMart
             // Reload order status
             LoadOrderStatus();
         }
+        protected string GetTimelineDotClass(string status)
+{
+    var current = lblOrderStatus.Text.Trim();
+    var statuses = new[] { "Pending", "Processing", "Delivery", "Delivered" };
+    int currentIdx = Array.IndexOf(statuses, current);
+    int itemIdx = Array.IndexOf(statuses, status);
+    if (itemIdx < currentIdx) return "done";
+    if (itemIdx == currentIdx) return "active";
+    return "";
+}
     }
 }

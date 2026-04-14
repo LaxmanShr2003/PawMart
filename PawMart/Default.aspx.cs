@@ -58,7 +58,7 @@ namespace PawMart
 
                     // Add image URLs (you can create an array of your hardcoded image paths)
                     string[] categoryImages = {
-                "/Images/categories/burgers.jpg",
+                "/Images/dash.jpeg",
                 "/Images/categories/pizza.jpg",
                 "/Images/categories/sushi.jpg",
                 "/Images/categories/desserts.jpg"
@@ -94,7 +94,7 @@ namespace PawMart
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"
-                SELECT TOP 8 p.ProductItemID AS ProductID, p.Name, p.Description, p.Price, 
+                SELECT TOP 4 p.ProductItemID AS ProductID, p.Name, p.Description, p.Price, 
                        p.ImageURL AS ImageUrl, c.CategoryID, c.Name as CategoryName
                 FROM Product p
                 INNER JOIN Category c ON p.CategoryID = c.CategoryID
@@ -130,6 +130,7 @@ namespace PawMart
             {
                 // Redirect to login page if user is not logged in
                 Response.Redirect("~/Login.aspx");
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
             // Redirect to the menu page
@@ -140,11 +141,21 @@ namespace PawMart
         {
             if (e.CommandName == "AddToCart")
             {
+                if (Session["User"] == null)
+                {
+                    Response.Redirect("~/Login.aspx");
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+                int productId = Convert.ToInt32(e.CommandArgument);
 
-                User _currentUser = Session["User"] as User;
-                int FoodItemID = Convert.ToInt32(e.CommandArgument);
+                // Store in session
+                Session["Cart_ProductID"] = productId;
+                Session["Cart_Quantity"] = 1;
 
-                _cartService.AddToCart(_currentUser.UserID,FoodItemID);
+                // Show modal
+                var master = (PawMart)this.Master;
+                master.ShowModal("Confirm", "Add this item to cart?", "CONFIRM_ADD_TO_CART");
             }
         }
 

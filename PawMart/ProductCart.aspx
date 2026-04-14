@@ -60,9 +60,11 @@
         .btn-outline {
                     text-align: center;
 text-decoration: none;
-            display: block;
-            width: 13%;
-            padding: 10px;
+              display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+           
+           
             background-color: var(--primary-color);
             color: white;
             border: none;
@@ -98,6 +100,38 @@ text-decoration: none;
             padding: 50px;
             color: #888;
         }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.3s ease;
+    border: none;
+}
+
+/* Primary button */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #e45c5c;
+}
+
+/* Outline button */
+.btn-primary-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-primary-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
     </style>
 </asp:Content>
 
