@@ -757,7 +757,7 @@
                     <p class="feature-description">Get your pet supplies delivered same-day or next-day, right to your doorstep.</p>
                 </div>
                 <div class="feature-box">
-                    <i class="fas fa-utensils feature-icon"></i>
+                    <i class="fas fa-paw feature-icon"></i>
                     <h3 class="feature-title">Premium Brands</h3>
                     <p class="feature-description">We stock only vet-approved, trusted brands your pets will love.</p>
                 </div>
@@ -863,7 +863,7 @@
                     </div>
                 </div>
                 <div class="app-image">
-                    <img src="/Images/app-mockup.png" alt="PawMart Mobile App" />
+                    <img src="/Images/mobile.png" alt="PawMart Mobile App" />
                 </div>
             </div>
         </div>

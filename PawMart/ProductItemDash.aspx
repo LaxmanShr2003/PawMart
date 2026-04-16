@@ -257,7 +257,7 @@
     <ItemTemplate>
         <div class="action-buttons">
             <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn-edit" CommandName="EditProductItem"
-                CommandArgument='<%# Eval("ProductItemID") %>' OnClick="btnEdit_Click">
+                CommandArgument='<%# Eval("ProductItemID") %>' >
                 Edit
             </asp:LinkButton>
             <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn-delete" CommandName="DeleteProductItem"
@@ -317,7 +317,7 @@
            <div class="form-group">
     <asp:Label ID="lblImageURL" runat="server" Text="Image:" AssociatedControlID="fileUploadImage"></asp:Label>
     <asp:FileUpload ID="fileUploadImage" runat="server" CssClass="form-control" />
-    <asp:RequiredFieldValidator ID="rfvImageURL" runat="server" ControlToValidate="fileUploadImage"
+    <asp:RequiredFieldValidator ID="rfvImageURL" runat="server" ControlToValidate="fileUpload1"
         ErrorMessage="Image is required." CssClass="error-message" ValidationGroup="AddProductItemGroup"></asp:RequiredFieldValidator>
 </div>
 

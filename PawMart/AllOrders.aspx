@@ -301,7 +301,7 @@
             <h3>Order Items</h3>
             <asp:GridView ID="gvOrderItems" runat="server" CssClass="order-items-table" AutoGenerateColumns="False">
                 <Columns>
-                    <asp:BoundField DataField="ProductItemID" HeaderText="Food Item" />
+                    <asp:BoundField DataField="ProductItemID" HeaderText="Product Item" />
                     <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
                     <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="${0:0.00}" />
                     <asp:BoundField DataField="SubTotal" HeaderText="Subtotal" DataFormatString="${0:0.00}" />

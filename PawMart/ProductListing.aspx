@@ -334,7 +334,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div class="container">
-        <h1 class="section-title">Our Menu</h1>
+        <h1 class="section-title">Our Products</h1>
 
         <!-- Search Bar -->
         <div class="search-container">
@@ -436,7 +436,7 @@
         </asp:Panel>
 
         <!-- All Products Section -->
-        <h2 class="section-title">All Menu Items</h2>
+        <h2 class="section-title">All Product Items</h2>
 
         <!-- Products Grid (Desktop/Tablet) -->
         <asp:Repeater ID="rptProducts" runat="server" OnItemCommand="rptProducts_ItemCommand">

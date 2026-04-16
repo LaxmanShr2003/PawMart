@@ -15,7 +15,7 @@
         </div>
         <div class="card">
             <i class="fas fa-store card-icon"></i>
-            <div class="card-title">Total Food Items</div>
+            <div class="card-title">Total Product Items</div>
             <div class="card-value">8</div>
         </div>
         <div class="card">

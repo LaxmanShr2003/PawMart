@@ -55,7 +55,7 @@ namespace PawMart
                 try
                 {
 
-                    if (fileUploadImage.HasFile)
+                    if (fileUpload1.HasFile)
                     {
                         // Define the folder to save the uploaded image
                         string uploadFolder = Server.MapPath("~/Uploads/");
@@ -87,6 +87,7 @@ namespace PawMart
                             CreatedAt = DateTime.Now,
                             UpdatedAt = DateTime.Now
                         };
+                       
 
                         if (_productService.AddProductItem(newProduct))
                         {
@@ -141,24 +142,33 @@ namespace PawMart
 
                         if (existingProduct != null)
                         {
+                            // ✅ SET VALUES FIRST
                             existingProduct.Name = txtEditName.Text.Trim();
                             existingProduct.Description = txtEditDescription.Text.Trim();
                             existingProduct.Price = Convert.ToDecimal(txtEditPrice.Text);
-                            existingProduct.DiscountPrice = Convert.ToDecimal(txtEditDiscountPrice.Text);
+
+                            // 👇 DISCOUNT FIX HERE
+                            existingProduct.DiscountPrice = string.IsNullOrEmpty(txtEditDiscountPrice.Text)
+                                ? 0
+                                : Convert.ToDecimal(txtEditDiscountPrice.Text);
+
                             existingProduct.ImageURL = "~/Uploads/" + fileName;
                             existingProduct.CategoryID = Convert.ToInt32(ddlEditCategoryID.SelectedValue);
                             existingProduct.IsAvailable = chkEditIsAvailable.Checked;
                             existingProduct.IsFeatured = chkEditIsFeatured.Checked;
                             existingProduct.UpdatedAt = DateTime.Now;
 
+                            // ✅ SAVE FILE HERE
+                            fileUpload1.SaveAs(filePath);
+
+                            // ✅ THEN UPDATE DB
                             if (_productService.UpdateProduct(existingProduct))
                             {
                                 LoadFoodItems();
-                                lblEditMessage.Text = "Product item updated successfully!";
+                                lblEditMessage.Text = "Product updated successfully!";
                                 lblEditMessage.CssClass = "success-message";
 
-                                // Add JavaScript to close the modal after successful update
-                                ClientScript.RegisterStartupScript(this.GetType(), "closeEditModal", "closeEditModal();", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "closeEditModal", "closeEditModal();", true);
                             }
                             else
                             {
@@ -183,7 +193,7 @@ namespace PawMart
 
         protected void gvProductItems_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "DeleteFoodItem")
+            if (e.CommandName == "DeleteProductItem")
             {
                 try
                 {
@@ -209,7 +219,7 @@ namespace PawMart
                         $"alert('An error occurred: {ex.Message}');", true);
                 }
             }
-            else if (e.CommandName == "EditFoodItem")
+            else if (e.CommandName == "EditProductItem")
             {
                 int foodItemId = Convert.ToInt32(e.CommandArgument);
                 Product productItem = _productService.GetProductById(foodItemId);
@@ -254,7 +264,7 @@ namespace PawMart
 
                 // Show the Edit modal using JavaScript
                 ScriptManager.RegisterStartupScript(this, GetType(), "showEditModal",
-                    "document.getElementById('editFoodItemModal').style.display = 'flex';", true);
+     "openEditModal();", true);
             }
         }
 

@@ -305,12 +305,12 @@
                 </li>
                 <li class="has-submenu">
                     <a href="#">
-                        <i class="fas fa-utensils"></i>
-                        Menu Management
+                        <i class="fas fa-paw"></i>
+                        Product Management
                     </a>
                     <ul class="submenu">
                         <li><a href="CategoryDash.aspx">Categories</a></li>
-                        <li><a href="ProductItemDash.aspx">Food Items</a></li>
+                        <li><a href="ProductItemDash.aspx">Product Items</a></li>
                        
                     </ul>
                 </li>
