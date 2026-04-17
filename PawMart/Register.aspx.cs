@@ -41,7 +41,7 @@ namespace PawMart
                         Password = txtPassword.Text.Trim(), // Consider hashing the password
                         Phone = txtPhone.Text.Trim(),
                         Address = txtAddress.Text.Trim(),
-                        UserType = "Customer",
+                        UserType = "Admin",
                         RegistrationDate = DateTime.Now,
                         IsActive = true
                     };

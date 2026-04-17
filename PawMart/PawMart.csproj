@@ -145,9 +145,9 @@
     <Content Include="Admindash.aspx" />
     <Content Include="Admindashboard.aspx" />
     <Content Include="AllOrders.aspx" />
-    <Content Include="App_Data\Foody.mdf" />
-    <Content Include="App_Data\Foody_log.ldf">
-      <DependentUpon>Foody.mdf</DependentUpon>
+    <Content Include="App_Data\PawMart.mdf" />
+    <Content Include="App_Data\PawMart_log.ldf">
+      <DependentUpon>PawMart.mdf</DependentUpon>
     </Content>
     <Content Include="CategoryDash.aspx" />
     <Content Include="Checkout.aspx" />

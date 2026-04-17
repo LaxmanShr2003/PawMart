@@ -124,7 +124,7 @@
      <div class="register-container">
         <div class="register-header">
             <h2>Create an Account</h2>
-            <p>Join PawMart to order delicious food</p>
+            <p>Join PawMart to order premium pet products</p>
         </div>
 
         <div class="form-row">

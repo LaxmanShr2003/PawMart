@@ -122,7 +122,7 @@
         <asp:Label ID="lblErrorMessage" runat="server" CssClass="validation-error" Style="display: block; margin-top: 15px; text-align: center;"></asp:Label>
 
         <div class="form-footer">
-            <p>Forgot your password? <a href="ForgotPassword.aspx">Reset it here</a></p>
+            
             <p>Don't have an account? <a href="Register.aspx">Sign up</a></p>
         </div>
     </div>
